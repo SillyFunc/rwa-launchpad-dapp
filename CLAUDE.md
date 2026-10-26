@@ -17,6 +17,9 @@ RWA 资产发射平台（BSC）的前端 DApp。
 
 - `src/config/`：全局单例配置（`wagmi.ts` 链与钱包、`queryClient.ts` 共用的 QueryClient）
 - `src/providers/AppProviders.tsx`：Provider 嵌套顺序 Wagmi → QueryClient → RainbowKit，在 `main.tsx` 中包裹整个应用
+- `src/router.ts`：路由表（`createHashRouter`）；`App.tsx` 是根布局（Header + `<Outlet />` + Footer），页面作为它的子路由
+- `src/components/`：通用组件（如 `WalletButton.tsx`）；`src/components/layout/`：`Header`、`Footer` 等布局组件
+- `src/assets/`：设计稿导出的静态素材
 
 ## 开发约定
 
