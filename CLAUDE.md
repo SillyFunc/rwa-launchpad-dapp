@@ -18,8 +18,10 @@ RWA 资产发射平台（BSC）的前端 DApp。
 - 路径别名：`@/` 指向 `src/`，定义在 `tsconfig.app.json` 的 `paths`，Vite 通过 `resolve.tsconfigPaths` 读取同一份配置
 - `src/config/`：全局单例配置（`wagmi.ts` 链与钱包、`queryClient.ts` 共用的 QueryClient）
 - `src/providers/AppProviders.tsx`：Provider 嵌套顺序 Wagmi → QueryClient → ConnectKit，在 `main.tsx` 中包裹整个应用
-- `src/router.ts`：路由表（`createHashRouter`）；`App.tsx` 是根布局（Header + `<Outlet />` + Footer），页面作为它的子路由
+- `src/router.ts`：路由表（`createHashRouter`）；`App.tsx` 是根布局（Header + `<Outlet />` + Footer），页面作为它的子路由。页脚默认显示，个别页面在路由上加 `handle: { hideFooter: true }` 隐藏
+- `src/pages/`：页面组件（`HomePage` → `/`、`OnboardingPage` → `/onboarding`）
 - `src/components/`：通用组件（如 `WalletButton.tsx`）；`src/components/layout/`：`Header`、`Footer` 等布局组件
+- `src/utils/`：通用工具函数，`format.ts` 放显示用的格式化函数（如 `shortenAddress`）
 - `src/assets/`：设计稿导出的静态素材
 
 ## 开发约定

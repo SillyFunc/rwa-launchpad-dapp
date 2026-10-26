@@ -1,12 +1,9 @@
 import { ConnectKitButton } from 'connectkit'
 import bnbIcon from '@/assets/bnb.svg'
+import { shortenAddress } from '@/utils/format.ts'
 
 const buttonClassName =
   'flex items-center gap-1 rounded-lg h-6 border border-[#fcd438] px-2.5 text-xs font-medium text-[#fcd438]'
-
-function shortenAddress(address: string) {
-  return `${address.slice(0, 6)}…${address.slice(-6)}`
-}
 
 export function WalletButton() {
   return (
