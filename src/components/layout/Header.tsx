@@ -9,7 +9,7 @@ export function Header() {
   const glassOpacity = useTransform(scrollY, [0, 24], [0, 1])
 
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between p-4">
+    <header className="sticky top-0 z-40 flex items-center justify-between p-4 border-b border-b-[#484B51]">
       <motion.div
         aria-hidden
         style={{ opacity: glassOpacity }}
