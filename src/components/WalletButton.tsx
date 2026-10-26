@@ -1,4 +1,4 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { ConnectKitButton } from 'connectkit'
 import bnbIcon from '@/assets/bnb.svg'
 
 const buttonClassName =
@@ -10,31 +10,31 @@ function shortenAddress(address: string) {
 
 export function WalletButton() {
   return (
-    <ConnectButton.Custom>
-      {({ account, chain, mounted, openAccountModal, openChainModal, openConnectModal }) => {
-        if (!mounted || !account || !chain) {
+    <ConnectKitButton.Custom>
+      {({ isConnected, address, unsupported, show }) => {
+        if (!isConnected || !address) {
           return (
-            <button type="button" onClick={openConnectModal} className={buttonClassName}>
+            <button type="button" onClick={show} className={buttonClassName}>
               连接钱包
             </button>
           )
         }
 
-        if (chain.unsupported) {
+        if (unsupported) {
           return (
-            <button type="button" onClick={openChainModal} className={buttonClassName}>
+            <button type="button" onClick={show} className={buttonClassName}>
               切换网络
             </button>
           )
         }
 
         return (
-          <button type="button" onClick={openAccountModal} className={buttonClassName}>
+          <button type="button" onClick={show} className={buttonClassName}>
             <img src={bnbIcon} alt="" />
-            {shortenAddress(account.address)}
+            {shortenAddress(address)}
           </button>
         )
       }}
-    </ConnectButton.Custom>
+    </ConnectKitButton.Custom>
   )
 }
