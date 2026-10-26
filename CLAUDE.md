@@ -15,6 +15,7 @@ RWA 资产发射平台（BSC）的前端 DApp。
 
 ## 目录
 
+- 路径别名：`@/` 指向 `src/`，定义在 `tsconfig.app.json` 的 `paths`，Vite 通过 `resolve.tsconfigPaths` 读取同一份配置
 - `src/config/`：全局单例配置（`wagmi.ts` 链与钱包、`queryClient.ts` 共用的 QueryClient）
 - `src/providers/AppProviders.tsx`：Provider 嵌套顺序 Wagmi → QueryClient → RainbowKit，在 `main.tsx` 中包裹整个应用
 - `src/router.ts`：路由表（`createHashRouter`）；`App.tsx` 是根布局（Header + `<Outlet />` + Footer），页面作为它的子路由
@@ -33,4 +34,5 @@ RWA 资产发射平台（BSC）的前端 DApp。
 8. **路由**：`react-router`。
 9. **主题**：全站统一 dark 风格，不做浅色模式，不使用 `dark:` 变体；全局底色与文字色在 `src/index.css` 的 base 层设置，RainbowKit 使用 `darkTheme()`。
 10. **注释**：禁止编写教学式注释（解释代码在做什么、复述库或 API 的用法、分步讲解）；只在原因不明显时（workaround、业务约束）写一行简短注释。
-11. 待补充…
+11. **导入路径**：跨目录导入统一使用 `@/` 别名（如 `@/assets/logo.svg`、`@/components/WalletButton.tsx`），同目录内用 `./`，不使用 `../`。
+12. 待补充…
