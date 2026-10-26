@@ -1,8 +1,8 @@
-import logo from '@/assets/logo.svg?url'
-import menuIcon from '@/assets/menu.svg'
-import { WalletButton } from '@/components/WalletButton.tsx'
-import { motion, useScroll, useTransform } from 'motion/react'
 import { Link } from 'react-router'
+import { motion, useScroll, useTransform } from 'motion/react'
+import { WalletButton } from '@/components/WalletButton.tsx'
+import logoUrl from '@/assets/logo.svg?url'
+import menuUrl from '@/assets/menu.svg?url'
 
 export function Header() {
   const { scrollY } = useScroll()
@@ -32,15 +32,27 @@ export function Header() {
           aria-hidden
           className="block shrink-0 bg-current [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] mask-center mask-no-repeat mask-contain w-23 h-5.25"
           style={{
-            WebkitMaskImage: `url("${logo}")`,
-            maskImage: `url("${logo}")`,
+            WebkitMaskImage: `url("${logoUrl}")`,
+            maskImage: `url("${logoUrl}")`,
           }}
         ></span>
       </Link>
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-2.5 shrink-0">
         <WalletButton />
-        <button type="button" aria-label="菜单" aria-expanded>
-          <img src={menuIcon} alt="" />
+        <button
+          type="button"
+          aria-label="菜单"
+          aria-expanded
+          className="size-6 flex items-center justify-center focus-visible:outline-none transition-transform active:translate-y-0.5"
+        >
+          <img
+            src={menuUrl}
+            decoding="async"
+            loading="lazy"
+            fetchPriority="low"
+            className="size-full object-cover"
+            alt=""
+          />
         </button>
       </div>
     </motion.header>
