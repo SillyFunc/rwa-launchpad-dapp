@@ -1,10 +1,10 @@
 @import 'tailwindcss';
 
-@theme {
+/* @theme {
   --font-sans:
     'MiSans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
+} */
 
 @layer base {
   html {
@@ -12,6 +12,6 @@
   }
 
   body {
-    @apply bg-black text-white antialiased;
+    @apply bg-[#1a1a1a] text-white antialiased;
   }
 }
