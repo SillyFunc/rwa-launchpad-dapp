@@ -9,7 +9,7 @@ function App() {
   )
 
   return (
-    <div className="flex min-h-svh w-full sm:max-w-sm sm:mx-auto flex-col">
+    <div className="flex min-h-svh w-full sm:max-w-sm sm:mx-auto flex-col bg-[#070808]">
       <Header />
       <main className="flex-1">
         <Outlet />
