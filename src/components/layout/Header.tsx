@@ -7,13 +7,21 @@ import { Link } from 'react-router'
 export function Header() {
   const { scrollY } = useScroll()
   const glassOpacity = useTransform(scrollY, [0, 24], [0, 1])
+  const borderColor = useTransform(
+    glassOpacity,
+    [0, 1],
+    ['#484B51', '#484B5100'],
+  )
 
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between p-4 border-b border-b-[#484B51]">
+    <motion.header
+      style={{ borderBottomColor: borderColor }}
+      className="sticky top-0 z-40 flex items-center justify-between p-4 border-b"
+    >
       <motion.div
         aria-hidden
         style={{ opacity: glassOpacity }}
-        className="absolute inset-0 -z-10 border-b border-white/10 bg-black/60 backdrop-blur-xl backdrop-saturate-150"
+        className="absolute inset-x-0 top-0 -bottom-px -z-10 bg-black/60 backdrop-blur-xl backdrop-saturate-150"
       />
       <Link
         className="text-white focus-visible:outline-none"
@@ -35,6 +43,6 @@ export function Header() {
           <img src={menuIcon} alt="" />
         </button>
       </div>
-    </header>
+    </motion.header>
   )
 }
