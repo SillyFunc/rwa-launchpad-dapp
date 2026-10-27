@@ -1,37 +1,55 @@
-import { ConnectKitButton } from 'connectkit'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 import bnbIcon from '@/assets/bnb.svg'
 import { shortenAddress } from '@/utils/format.ts'
 
 const buttonClassName =
-  'flex items-center gap-1 rounded-lg h-6 border border-[#fcd438] px-2.5 text-xs font-medium text-[#fcd438]'
+  'flex items-center gap-1 rounded-lg h-6 border border-[#fcd438] px-2.5 text-xs font-medium text-[#fcd438] focus-visible:outline-none transition-transform active:translate-y-0.5'
 
 export function WalletButton() {
   return (
-    <ConnectKitButton.Custom>
-      {({ isConnected, address, unsupported, show }) => {
-        if (!isConnected || !address) {
+    <ConnectButton.Custom>
+      {({
+        account,
+        chain,
+        openAccountModal,
+        openChainModal,
+        openConnectModal,
+      }) => {
+        if (!account || !chain) {
           return (
-            <button type="button" onClick={show} className={buttonClassName}>
+            <button
+              type="button"
+              onClick={openConnectModal}
+              className={buttonClassName}
+            >
               连接钱包
             </button>
           )
         }
 
-        if (unsupported) {
+        if (chain.unsupported) {
           return (
-            <button type="button" onClick={show} className={buttonClassName}>
+            <button
+              type="button"
+              onClick={openChainModal}
+              className={buttonClassName}
+            >
               切换网络
             </button>
           )
         }
 
         return (
-          <button type="button" onClick={show} className={buttonClassName}>
+          <button
+            type="button"
+            onClick={openAccountModal}
+            className={buttonClassName}
+          >
             <img src={bnbIcon} alt="" />
-            {shortenAddress(address)}
+            {shortenAddress(account.address)}
           </button>
         )
       }}
-    </ConnectKitButton.Custom>
+    </ConnectButton.Custom>
   )
 }

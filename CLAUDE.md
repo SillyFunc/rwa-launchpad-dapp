@@ -11,13 +11,18 @@ RWA 资产发射平台（BSC）的前端 DApp。
 
 ## 环境变量
 
-复制 `.env.example` 为 `.env.local` 后再运行。`VITE_WALLETCONNECT_PROJECT_ID` 留空时不启用 WalletConnect（手机扫码、跳转钱包 App 不可用），生产环境必须配置在 https://cloud.reown.com 申请的真实 projectId。
+复制 `.env.example` 为 `.env.local` 后再运行，变量均在 `src/config/rainbowkit.ts` 读取：
+
+- `VITE_WALLETCONNECT_PROJECT_ID`：留空时不启用 WalletConnect，钱包列表只剩浏览器注入钱包（手机扫码、跳转钱包 App 不可用）；生产环境必须配置在 https://cloud.reown.com 申请的真实 projectId
+- `VITE_ENABLE_TESTNETS`：为 `true` 时加入 BSC 测试网
+- `VITE_BSC_RPC_URL`：BSC 主网自定义 RPC，优先于公共节点（`bsc-rpc.publicnode.com` 的 HTTP / WebSocket 作为回退）
+- `VITE_BSC_TESTNET_RPC_URL`：BSC 测试网自定义 RPC，留空使用链默认节点
 
 ## 目录
 
 - 路径别名：`@/` 指向 `src/`，定义在 `tsconfig.app.json` 的 `paths`，Vite 通过 `resolve.tsconfigPaths` 读取同一份配置
-- `src/config/`：全局单例配置（`wagmi.ts` 链与钱包、`queryClient.ts` 共用的 QueryClient）
-- `src/providers/AppProviders.tsx`：Provider 嵌套顺序 Wagmi → QueryClient → ConnectKit，在 `main.tsx` 中包裹整个应用
+- `src/config/`：全局单例配置（`rainbowkit.ts` 链与钱包、`queryClient.ts` 共用的 QueryClient）
+- `src/providers/AppProviders.tsx`：Provider 嵌套顺序 Wagmi → QueryClient → RainbowKit，在 `main.tsx` 中包裹整个应用
 - `src/router.ts`：路由表（`createHashRouter`）；`App.tsx` 是根布局（Header + `<Outlet />` + Footer），页面作为它的子路由。页脚默认显示，个别页面在路由上加 `handle: { hideFooter: true }` 隐藏
 - `src/pages/`：页面组件（`HomePage` → `/`、`OnboardingPage` → `/onboarding`）
 - `src/components/`：通用组件（如 `WalletButton.tsx`）；`src/components/layout/`：`Header`、`Footer` 等布局组件
@@ -32,9 +37,9 @@ RWA 资产发射平台（BSC）的前端 DApp。
 4. **动画**：统一使用 Motion（`motion`，从 `motion/react` 引入）。
 5. **状态管理**：统一使用 Zustand，只存放客户端/UI 状态；服务端数据与链上数据由 TanStack Query 缓存，不复制进 store。
 6. **网络请求**：统一使用 TanStack Query（`@tanstack/react-query`）管理请求的缓存、加载与错误状态；axios 只作为 `queryFn` / `mutationFn` 内的传输层，组件中不直接调用。
-7. **钱包**：连接钱包统一使用 ConnectKit（基于 wagmi + viem，弹窗语言 `zh-CN`），链上读写用 wagmi hooks；wagmi 与业务请求共用同一个 `QueryClient`。
+7. **钱包**：连接钱包统一使用 RainbowKit（基于 wagmi + viem，弹窗语言 `zh-CN`），链上读写用 wagmi hooks；wagmi 与业务请求共用同一个 `QueryClient`。自定义连接按钮用 `ConnectButton.Custom`，它和 RainbowKit 的弹窗都必须位于 `RainbowKitProvider` 内。
 8. **路由**：`react-router`。
-9. **主题**：全站统一 dark 风格，不做浅色模式，不使用 `dark:` 变体；全局底色与文字色在 `src/index.css` 的 base 层设置，ConnectKit 使用 `mode="dark"`。
+9. **主题**：全站统一 dark 风格，不做浅色模式，不使用 `dark:` 变体；全局底色与文字色在 `src/index.css` 的 base 层设置，RainbowKit 使用 `darkTheme()`。
 10. **注释**：禁止编写教学式注释（解释代码在做什么、复述库或 API 的用法、分步讲解）；只在原因不明显时（workaround、业务约束）写一行简短注释。
 11. **导入路径**：跨目录导入统一使用 `@/` 别名（如 `@/assets/logo.svg`、`@/components/WalletButton.tsx`），同目录内用 `./`，不使用 `../`。
 12. 待补充…
