@@ -6,7 +6,7 @@ RWA 资产发射平台（BSC）的前端 DApp。
 
 - Vite 8 + React 19 + TypeScript，已开启 React Compiler（无需为性能手写 `useMemo` / `useCallback` / `memo`）
 - 包管理：pnpm
-- `pnpm dev` 开发（固定 `http://127.0.0.1:8082`）· `pnpm build` 类型检查并构建 · `pnpm lint` 运行 oxlint
+- `pnpm dev` 开发 · `pnpm build` 类型检查并构建 · `pnpm lint` 运行 oxlint
 - 新增带编译脚本的依赖时，需在 `pnpm-workspace.yaml` 的 `allowBuilds` 中明确允许或拒绝，否则 `pnpm install` 会失败
 
 ## 环境变量
