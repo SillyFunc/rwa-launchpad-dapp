@@ -7,7 +7,7 @@ export interface PageTitleProps {
 export const PageTitle: React.FC<PageTitleProps> = ({ title }) => {
   const nav = useNavigate()
   return (
-    <div className="flex items-center flex-1 gap-1.5 min-w-0 px-3">
+    <div className="flex items-center flex-1 gap-1.5 min-w-0">
       <button
         type="button"
         aria-label="返回"
