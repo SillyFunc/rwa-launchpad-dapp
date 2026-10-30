@@ -15,7 +15,7 @@ const featureColumns = [
 export function RwaIntro() {
   return (
     <section className="relative mt-9">
-      <SectionHeading title="Whotel RWA" underlineClassName="w-35">
+      <SectionHeading title="Whotel RWA">
         <p className="mt-2.25 text-xs tracking-widest text-white opacity-60">
           Professional asset tokenization solution
         </p>

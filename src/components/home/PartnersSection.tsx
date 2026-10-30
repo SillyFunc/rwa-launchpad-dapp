@@ -62,7 +62,7 @@ const partnerRows = [
 export function PartnersSection() {
   return (
     <section className="relative -mt-0.5">
-      <SectionHeading title="Partners" underlineClassName="w-24" />
+      <SectionHeading title="Partners" />
       <div className="mt-11 flex flex-col gap-6">
         {partnerRows.map((row, index) => (
           <div

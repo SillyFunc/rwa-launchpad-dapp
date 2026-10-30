@@ -45,7 +45,7 @@ const nodes = [
 export function IndustrySection() {
   return (
     <section className="relative mt-13 px-4">
-      <SectionHeading title="Industry" underlineClassName="w-24">
+      <SectionHeading title="Industry">
         <p className="mt-2.25 text-center text-xs leading-4 text-white opacity-60">
           Explore how businesses across different industries are using RWA to
           improve efficiency, increase accessibility, and unlock new
