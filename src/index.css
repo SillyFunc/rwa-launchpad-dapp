@@ -15,3 +15,18 @@
     @apply bg-[#1a1a1a] text-white antialiased;
   }
 }
+
+/* TDesign 变量未分层，覆盖须放在 @layer 之外 */
+:root[theme-mode='dark'] {
+  --td-brand-color-1: #2d260e;
+  --td-brand-color-2: #3a2f0a;
+  --td-brand-color-3: #493c06;
+  --td-brand-color-4: #665405;
+  --td-brand-color-5: #876f09;
+  --td-brand-color-6: #ad9016;
+  --td-brand-color-7: #d4b122;
+  --td-brand-color-8: #fcd438;
+  --td-brand-color-9: #ffe385;
+  --td-brand-color-10: #ffeeb6;
+  --td-button-primary-color: #090e11;
+}
