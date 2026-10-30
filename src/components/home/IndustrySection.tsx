@@ -1,6 +1,6 @@
 import industryCore from '@/assets/home/industry-core.png'
 import { IndustryOrbit } from './IndustryOrbit.tsx'
-import { IndustryRipple } from './IndustryRipple.tsx'
+import { RippleRings } from './RippleRings.tsx'
 import { SectionHeading } from './SectionHeading.tsx'
 
 export function IndustrySection() {
@@ -15,7 +15,11 @@ export function IndustrySection() {
       </SectionHeading>
 
       <div className="relative mx-auto mt-8.5 size-85.75">
-        <IndustryRipple className="absolute inset-0 size-full" />
+        <RippleRings
+          size={343}
+          innerRadius={31.5}
+          className="absolute inset-0 size-full"
+        />
         <div className="absolute top-29 left-29.75 h-27.5 w-26.25 overflow-hidden rounded-full">
           <img
             alt="WHX"

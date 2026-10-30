@@ -9,38 +9,52 @@ import {
   type MotionValue,
 } from 'motion/react'
 
-const SIZE = 343
-const CENTER = SIZE / 2
 const RING_GAP = 20
-const INNER_RADIUS = 31.5
-const RING_COUNT = Math.round((CENTER - INNER_RADIUS) / RING_GAP) + 1
 const RIPPLE_DURATION = 1.6
 
 // 沿用设计稿的径向渐变（越外越暗），首尾各一个间距内淡入淡出，每轮外扩一个间距后无缝衔接
-function ringOpacity(radius: number) {
-  const fadeIn = Math.min(1, Math.max(0, (radius - INNER_RADIUS) / RING_GAP))
-  const fadeOut = Math.min(1, Math.max(0, (CENTER - radius) / RING_GAP))
-  return 0.8 * (0.6 - 0.5 * (radius / CENTER)) * fadeIn * fadeOut
+function ringOpacity(radius: number, center: number, innerRadius: number) {
+  const fadeIn = Math.min(1, Math.max(0, (radius - innerRadius) / RING_GAP))
+  const fadeOut = Math.min(1, Math.max(0, (center - radius) / RING_GAP))
+  return 0.8 * (0.6 - 0.5 * (radius / center)) * fadeIn * fadeOut
 }
 
 function Ring({
   baseRadius,
+  center,
+  innerRadius,
   offset,
 }: {
   baseRadius: number
+  center: number
+  innerRadius: number
   offset: MotionValue<number>
 }) {
   const radius = useTransform(offset, (value) => baseRadius + value)
-  const opacity = useTransform(radius, ringOpacity)
+  const opacity = useTransform(radius, (value) =>
+    ringOpacity(value, center, innerRadius),
+  )
 
-  return <motion.circle cx={CENTER} cy={CENTER} r={radius} opacity={opacity} />
+  return <motion.circle cx={center} cy={center} r={radius} opacity={opacity} />
 }
 
-export function IndustryRipple({ className }: { className?: string }) {
+export function RippleRings({
+  size,
+  innerRadius = (size / 2) % RING_GAP,
+  color = '#FF7800',
+  className,
+}: {
+  size: number
+  innerRadius?: number
+  color?: string
+  className?: string
+}) {
   const svgRef = useRef<SVGSVGElement>(null)
   const isInView = useInView(svgRef)
   const shouldReduceMotion = useReducedMotion()
   const offset = useMotionValue(0)
+  const center = size / 2
+  const ringCount = Math.round((center - innerRadius) / RING_GAP) + 1
 
   useEffect(() => {
     if (!isInView || shouldReduceMotion) return
@@ -56,16 +70,18 @@ export function IndustryRipple({ className }: { className?: string }) {
     <svg
       ref={svgRef}
       aria-hidden
-      viewBox={`0 0 ${SIZE} ${SIZE}`}
+      viewBox={`0 0 ${size} ${size}`}
       fill="none"
-      stroke="#FF7800"
+      stroke={color}
       strokeWidth={0.5}
       className={className}
     >
-      {Array.from({ length: RING_COUNT }, (_, index) => (
+      {Array.from({ length: ringCount }, (_, index) => (
         <Ring
           key={index}
-          baseRadius={INNER_RADIUS + index * RING_GAP}
+          baseRadius={innerRadius + index * RING_GAP}
+          center={center}
+          innerRadius={innerRadius}
           offset={offset}
         />
       ))}
