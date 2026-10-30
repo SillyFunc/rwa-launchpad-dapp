@@ -1,10 +1,12 @@
+import { useId } from 'react'
+import { Play } from 'lucide-react'
 import banner from '@/assets/home/banner.png'
-import noticeArrow from '@/assets/home/notice-arrow.svg'
 import noticeBar from '@/assets/home/notice-bar.svg?url'
-import noticeIcon from '@/assets/home/notice-icon.svg'
 import noticeLabel from '@/assets/home/notice-label.svg'
 
 export function HeroBanner() {
+  const arrowGradientId = useId()
+
   return (
     <div className="relative">
       <div className="relative rounded-3xl overflow-hidden w-full h-40">
@@ -38,7 +40,11 @@ export function HeroBanner() {
             通知公告
           </span>
           <span className="relative flex h-2 w-1.5 items-center justify-center">
-            <img alt="" src={noticeIcon} className="-rotate-90" />
+            <Play
+              aria-hidden
+              strokeWidth={0}
+              className="size-2.5 shrink-0 fill-[#090e11]"
+            />
           </span>
         </div>
         <p className="relative ml-1.5 min-w-0 flex-1 truncate text-xs font-medium text-white">
@@ -46,7 +52,19 @@ export function HeroBanner() {
           tokenization
         </p>
         <span className="relative ml-2 flex h-2.5 w-1.75 shrink-0 items-center justify-center">
-          <img alt="" src={noticeArrow} className="-rotate-90" />
+          <Play
+            aria-hidden
+            strokeWidth={0}
+            fill={`url(#${arrowGradientId})`}
+            className="size-3 shrink-0"
+          >
+            <defs>
+              <linearGradient id={arrowGradientId} x1="0" y1="1" x2="0" y2="0">
+                <stop stopColor="#FEFE00" />
+                <stop offset="1" stopColor="#CF4F00" />
+              </linearGradient>
+            </defs>
+          </Play>
         </span>
       </div>
 
