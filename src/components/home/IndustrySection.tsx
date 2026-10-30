@@ -75,7 +75,7 @@ export function IndustrySection() {
               <img alt="" src={node.icon} className="relative" />
             </div>
             <span
-              className={`absolute font-['MiSans',sans-serif] text-xs whitespace-nowrap text-white ${node.labelClassName}`}
+              className={`absolute text-xs whitespace-nowrap text-white ${node.labelClassName}`}
             >
               {node.label}
             </span>

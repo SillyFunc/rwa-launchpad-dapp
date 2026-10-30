@@ -1,10 +1,13 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/inter/opsz.css';
 
-/* @theme {
+/* Inter 只含西文，中文按顺序回退到各平台系统字体 */
+@theme {
   --font-sans:
-    'MiSans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-} */
+    'Inter Variable', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'Noto Sans SC', system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Noto Color Emoji';
+}
 
 @layer base {
   html {
@@ -17,6 +20,11 @@
 }
 
 /* TDesign 变量未分层，覆盖须放在 @layer 之外 */
+:root {
+  --td-font-family: var(--font-sans);
+  --td-font-family-medium: var(--font-sans);
+}
+
 :root[theme-mode='dark'] {
   --td-brand-color-1: #2d260e;
   --td-brand-color-2: #3a2f0a;

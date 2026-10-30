@@ -22,7 +22,7 @@ export function RwaIntro() {
       </SectionHeading>
 
       <div className="relative mx-auto mt-6.5 w-85.75">
-        <h1 className="w-70.75 bg-linear-159 from-white from-5% to-[#fcd900] bg-clip-text font-['Alimama_ShuHeiTi',MiSans,sans-serif] text-2xl leading-8 font-bold text-transparent">
+        <h1 className="w-70.75 bg-linear-159 from-white from-5% to-[#fcd900] bg-clip-text text-2xl leading-8 font-bold text-transparent">
           Tokenize，trade，and manage any financial instrument
         </h1>
         <p className="mt-3 w-60 text-sm leading-4.5 text-white opacity-80">

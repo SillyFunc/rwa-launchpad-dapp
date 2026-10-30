@@ -35,7 +35,7 @@ export function HeroBanner() {
             src={noticeLabel}
             className="absolute inset-0 size-full"
           />
-          <span className="relative font-['Alimama_ShuHeiTi',MiSans,sans-serif] text-sm font-bold text-[#090e11]">
+          <span className="relative text-sm font-bold text-[#090e11]">
             通知公告
           </span>
           <span className="relative flex h-2 w-1.5 items-center justify-center">

@@ -6,12 +6,17 @@ import { config } from '@/config/rainbowkit'
 import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 
+const rainbowKitTheme = {
+  ...darkTheme(),
+  fonts: { body: 'var(--font-sans)' },
+}
+
 export function AppProviders({ children }: { children: ReactNode }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
-          theme={darkTheme()}
+          theme={rainbowKitTheme}
           locale="zh-CN"
           modalSize="compact"
           coolMode

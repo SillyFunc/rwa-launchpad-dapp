@@ -43,7 +43,8 @@ RWA 资产发射平台（BSC）的前端 DApp。
 8. **表单**：统一使用 TanStack Form（`@tanstack/react-form`）管理表单状态与校验；类型校验统一使用 Zod（`zod` v4），schema 直接传给 TanStack Form 的 `validators`，不引入额外的适配器包。
 9. **钱包**：连接钱包统一使用 RainbowKit（基于 wagmi + viem，弹窗语言 `zh-CN`），链上读写用 wagmi hooks；wagmi 与业务请求共用同一个 `QueryClient`。自定义连接按钮用 `ConnectButton.Custom`，它和 RainbowKit 的弹窗都必须位于 `RainbowKitProvider` 内。
 10. **路由**：`react-router`。
-11. **主题**：全站统一 dark 风格，不做浅色模式，不使用 `dark:` 变体；全局底色与文字色在 `src/index.css` 的 base 层设置，RainbowKit 使用 `darkTheme()`，TDesign 由 `index.html` 中 `<html theme-mode="dark">` 开启暗色，品牌色（`#FCD438`）等主题变量在 `src/index.css` 中覆盖。
-12. **注释**：禁止编写教学式注释（解释代码在做什么、复述库或 API 的用法、分步讲解）；只在原因不明显时（workaround、业务约束）写一行简短注释。
-13. **导入路径**：跨目录导入统一使用 `@/` 别名（如 `@/assets/logo.svg`、`@/components/WalletButton.tsx`），同目录内用 `./`，不使用 `../`。
-14. 待补充…
+11. **主题**：全站统一 dark 风格，不做浅色模式，不使用 `dark:` 变体；全局底色与文字色在 `src/index.css` 的 base 层设置，RainbowKit 使用 `darkTheme()`（在 `AppProviders.tsx` 中覆盖了字体），TDesign 由 `index.html` 中 `<html theme-mode="dark">` 开启暗色，品牌色（`#FCD438`）等主题变量在 `src/index.css` 中覆盖。
+12. **字体**：西文与数字用 Inter Variable（`@fontsource-variable/inter` 的 `opsz.css`，自托管，大字号自动切换为 Display 字形），中文回退到各平台系统字体；字体栈只在 `src/index.css` 的 `@theme` 中定义为 `--font-sans`，TDesign 的 `--td-font-family` 与 RainbowKit 的 `fonts.body` 都指向它。组件中不写死字体；金额、价格等数字加 `tabular-nums`。
+13. **注释**：禁止编写教学式注释（解释代码在做什么、复述库或 API 的用法、分步讲解）；只在原因不明显时（workaround、业务约束）写一行简短注释。
+14. **导入路径**：跨目录导入统一使用 `@/` 别名（如 `@/assets/logo.svg`、`@/components/WalletButton.tsx`），同目录内用 `./`，不使用 `../`。
+15. 待补充…
