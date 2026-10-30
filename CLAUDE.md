@@ -34,7 +34,7 @@ RWA 资产发射平台（BSC）的前端 DApp。
 ## 开发约定
 
 1. **优先复用成熟库**；组件源代码可控（组件代码放在仓库内、可直接修改，而不是黑盒依赖）；统一设计语言；**严格限制重复依赖**（同一职责只保留一个库，新增依赖前先确认现有依赖无法覆盖）；低耦合高内聚。
-2. **样式**：统一使用 Tailwind CSS v4（`@tailwindcss/vite`，入口 `src/index.css`），不新增独立 `.css` 文件或内联 `style`（运行时动态值除外）。
+2. **样式**：统一使用 Tailwind CSS v4（`@tailwindcss/vite`，入口 `src/index.css`），不新增独立 `.css` 文件或内联 `style`（运行时动态值除外）。品牌渐变描边（`#FEFE00` → `#CF4F00`，0.5px）统一用 `src/index.css` 中定义的 `gradient-border` 工具类。
 3. **组件库**：统一使用 TDesign Mobile（`tdesign-mobile-react`），样式已在 `main.tsx` 全局引入；查询组件 API 与示例优先使用 TDesign MCP（`tdesign-mcp-server`，配置在 `.mcp.json`）。
 4. **图标**：统一使用 Lucide（`lucide-react`）。
 5. **动画**：统一使用 Motion（`motion`，从 `motion/react` 引入）。

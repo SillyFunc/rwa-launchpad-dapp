@@ -28,6 +28,28 @@
   }
 }
 
+/* 品牌渐变描边：背景多为半透明，用遮罩把伪元素挖成 0.5px 的环，渐变才不会透进内部 */
+@utility gradient-border {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 0.5px;
+    border-radius: inherit;
+    background-image: linear-gradient(
+      to right,
+      rgb(254 254 0 / 0.6),
+      rgb(207 79 0 / 0.6)
+    );
+    mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+    mask-clip: content-box, border-box;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
 /* TDesign 变量未分层，覆盖须放在 @layer 之外 */
 :root {
   --td-font-family: var(--font-sans);
