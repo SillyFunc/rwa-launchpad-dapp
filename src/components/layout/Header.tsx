@@ -1,10 +1,14 @@
 import { Link } from 'react-router'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { WalletButton } from '@/components/WalletButton.tsx'
+import { useSidebarStore } from '@/stores/useSidebarStore.ts'
+import { Sidebar } from './Sidebar.tsx'
 import logoUrl from '@/assets/logo.svg?url'
 import menuUrl from '@/assets/menu.svg?url'
 
 export function Header() {
+  const isSidebarOpen = useSidebarStore((state) => state.isOpen)
+  const openSidebar = useSidebarStore((state) => state.open)
   const { scrollY } = useScroll()
   const glassOpacity = useTransform(scrollY, [0, 24], [0, 1])
   const borderColor = useTransform(
@@ -42,8 +46,11 @@ export function Header() {
         <button
           type="button"
           aria-label="菜单"
-          aria-expanded
-          className="size-6 flex items-center justify-center focus-visible:outline-none transition-transform active:translate-y-0.5"
+          aria-haspopup="dialog"
+          aria-controls="site-navigation"
+          aria-expanded={isSidebarOpen}
+          onClick={openSidebar}
+          className="size-6 flex cursor-pointer items-center justify-center rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-yellow-400 transition-transform active:translate-y-0.5"
         >
           <img
             src={menuUrl}
@@ -55,6 +62,7 @@ export function Header() {
           />
         </button>
       </div>
+      <Sidebar />
     </motion.header>
   )
 }
