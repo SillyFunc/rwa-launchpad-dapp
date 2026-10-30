@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import { Link } from 'react-router'
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import { Popup } from 'tdesign-mobile-react'
 import { useSidebarStore } from '@/stores/useSidebarStore.ts'
 import logoUrl from '@/assets/logo.svg'
 import closeIcon from '@/assets/navigation/close.svg'
@@ -56,108 +56,48 @@ function NavigationItem({
   )
 }
 
-function SidebarDialog() {
+export function Sidebar() {
+  const isOpen = useSidebarStore((state) => state.isOpen)
   const close = useSidebarStore((state) => state.close)
   const shouldReduceMotion = useReducedMotion()
-  const dialogRef = useRef<HTMLElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    const previouslyFocusedElement = document.activeElement
+    if (!isOpen) return
+    const trigger = document.activeElement
     const appRoot = document.getElementById('root')
-    const wasInert = appRoot?.inert ?? false
-    const scrollLocks = [document.documentElement, document.body].map(
-      (element) => ({
-        element,
-        wasLocked: element.classList.contains('overflow-hidden'),
-      }),
-    )
-
-    scrollLocks.forEach(({ element }) =>
-      element.classList.add('overflow-hidden'),
-    )
     if (appRoot) appRoot.inert = true
-    closeButtonRef.current?.focus({ preventScroll: true })
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        close()
-        return
-      }
-
-      if (event.key !== 'Tab') return
-
-      const focusableElements =
-        dialogRef.current?.querySelectorAll<HTMLElement>(
-          'a[href], button:not(:disabled)',
-        )
-      if (!focusableElements?.length) return
-
-      const firstElement = focusableElements[0]
-      const lastElement = focusableElements[focusableElements.length - 1]
-      const focusIsOutside = !dialogRef.current?.contains(
-        document.activeElement,
-      )
-
-      if (
-        event.shiftKey &&
-        (document.activeElement === firstElement || focusIsOutside)
-      ) {
-        event.preventDefault()
-        lastElement.focus()
-      } else if (
-        !event.shiftKey &&
-        (document.activeElement === lastElement || focusIsOutside)
-      ) {
-        event.preventDefault()
-        firstElement.focus()
-      }
+      if (event.key === 'Escape') close()
     }
-
     document.addEventListener('keydown', handleKeyDown)
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
-      scrollLocks.forEach(({ element, wasLocked }) => {
-        if (!wasLocked) element.classList.remove('overflow-hidden')
-      })
-      if (appRoot) appRoot.inert = wasInert
-      if (
-        previouslyFocusedElement instanceof HTMLElement &&
-        previouslyFocusedElement.isConnected
-      ) {
-        previouslyFocusedElement.focus({ preventScroll: true })
-      }
+      if (appRoot) appRoot.inert = false
+      if (trigger instanceof HTMLElement) trigger.focus({ preventScroll: true })
     }
-  }, [close])
+  }, [isOpen, close])
 
   return (
-    <motion.div
-      className="fixed inset-0 z-50 overflow-hidden bg-black/70"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) close()
-      }}
+    <Popup
+      visible={isOpen}
+      placement="right"
+      // 与 TDesign 滑入动画的 0.3s 保持一致，默认 240ms 会提前截断动画
+      duration={shouldReduceMotion ? 0 : 300}
+      overlayProps={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
+      onClose={close}
+      onOpened={() => closeButtonRef.current?.focus({ preventScroll: true })}
+      className="pointer-events-none w-full [--td-popup-bg-color:transparent]"
     >
-      <div className="pointer-events-none mx-auto flex h-full w-full max-w-sm flex-col px-4 py-2">
-        <motion.section
-          ref={dialogRef}
+      <div className="mx-auto flex h-full w-full sm:max-w-sm flex-col px-4 pt-24">
+        <section
           id="site-navigation"
           role="dialog"
           aria-modal="true"
           aria-labelledby="sidebar-title"
-          className="pointer-events-auto min-h-0 w-full overflow-y-auto overscroll-contain rounded-2xl bg-neutral-800/85 p-6 text-white"
-          initial={{ x: shouldReduceMotion ? 0 : '100%', opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: shouldReduceMotion ? 0 : '100%', opacity: 0 }}
-          transition={{
-            duration: shouldReduceMotion ? 0 : 0.25,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+          className="pointer-events-auto min-h-0 w-full overflow-y-auto overscroll-contain rounded-2xl bg-[#202020] p-6 text-white"
         >
           <h2 id="sidebar-title" className="sr-only">
             Navigation menu
@@ -241,19 +181,8 @@ function SidebarDialog() {
               })}
             </div>
           </div>
-        </motion.section>
+        </section>
       </div>
-    </motion.div>
-  )
-}
-
-export function Sidebar() {
-  const isOpen = useSidebarStore((state) => state.isOpen)
-
-  return createPortal(
-    <AnimatePresence>
-      {isOpen ? <SidebarDialog key="sidebar" /> : null}
-    </AnimatePresence>,
-    document.body,
+    </Popup>
   )
 }
