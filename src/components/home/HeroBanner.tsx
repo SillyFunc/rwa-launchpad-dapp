@@ -28,7 +28,6 @@ export function HeroBanner() {
         style={{ backgroundImage: `url(${noticeBar})` }}
         className="relative mt-8 flex w-full h-7.25 items-center pr-2.5 bg-no-repeat"
       >
-        {/* <img alt="" src={noticeBar} className="absolute inset-0 size-full" /> */}
         <div className="relative flex h-full w-21.75 shrink-0 items-center gap-1.25 pl-2.5">
           <img
             alt=""
@@ -51,24 +50,24 @@ export function HeroBanner() {
         </span>
       </div>
 
-      <div className="relative mx-auto mt-8 flex items-center gap-x-2.5">
-        <div className="flex flex-col flex-1 h-20 items-center justify-center gap-1.5 rounded-2xl border border-white bg-[rgba(29,29,29,0.4)] col-span-2">
-          <span className="text-xl font-semibold opacity-80">+$300M</span>
-          <span className="w-24 text-center text-xs opacity-60">
+      <div className="relative mx-auto mt-8 flex items-center gap-x-2.5 px-1">
+        <div className="flex flex-col w-full h-20 items-center justify-center gap-1.5 rounded-2xl border-[0.5px] border-white bg-[rgba(29,29,29,0.4)]">
+          <span className="text-lg font-semibold opacity-80">+$300M</span>
+          <span className="max-w-25 text-center text-xs text-[#A0A3A7]">
             Total tokenized Value(TLV)
           </span>
         </div>
-        <div className="flex flex-col flex-1 h-22.5 items-center justify-center gap-1.5 rounded-2xl border border-[#fefe00] bg-[rgba(29,29,29,0.4)] col-span-3">
-          <span className="bg-linear-to-r from-[#fefe00] to-[#cf4f00] bg-clip-text text-2xl font-semibold text-transparent">
+        <div className="relative flex flex-col w-32.5 shrink-0 h-24 items-center justify-center gap-1.5 rounded-2xl bg-[rgba(29,29,29,0.4)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:p-[0.5px] before:bg-linear-to-r before:from-[#fefe00]/60 before:to-[#cf4f00]/60 before:[mask-image:linear-gradient(#000_0_0),linear-gradient(#000_0_0)] before:[mask-clip:content-box,border-box] before:[mask-composite:exclude]">
+          <span className="bg-linear-to-r from-[#fefe00] to-[#cf4f00] bg-clip-text text-xl font-semibold text-transparent">
             +$300M
           </span>
-          <span className="w-28.5 text-center text-xs opacity-60">
+          <span className="max-w-25 text-center text-xs text-[#A0A3A7]">
             Total Value Locked(TVL)
           </span>
         </div>
-        <div className="flex flex-col flex-1 h-20 items-center justify-center gap-1.5 rounded-2xl border border-white bg-[rgba(29,29,29,0.4)] col-span-2">
-          <span className="text-xl font-semibold opacity-80">16+</span>
-          <span className="w-24 text-center text-xs opacity-60">
+        <div className="flex flex-col w-full h-20 items-center justify-center gap-1.5 rounded-2xl border-[0.5px] border-white bg-[rgba(29,29,29,0.4)]">
+          <span className="text-lg font-semibold opacity-80">16+</span>
+          <span className="max-w-25 text-center text-xs text-[#A0A3A7]">
             Tokenized in
           </span>
         </div>

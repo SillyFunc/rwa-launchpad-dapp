@@ -7,11 +7,20 @@
     'Inter Variable', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
     'Noto Sans SC', system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Noto Color Emoji';
+
+  /* 设计稿单行文字行高约 1.2，Tailwind 默认的 1.33–1.5 偏高；多行段落用 leading-* 单独设置 */
+  --text-xs--line-height: 1.2;
+  --text-sm--line-height: 1.2;
+  --text-base--line-height: 1.2;
+  --text-lg--line-height: 1.2;
+  --text-xl--line-height: 1.2;
+  --text-2xl--line-height: 1.2;
 }
 
 @layer base {
   html {
     color-scheme: dark;
+    line-height: 1.2;
   }
 
   body {
