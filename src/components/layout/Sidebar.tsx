@@ -40,7 +40,7 @@ function NavigationItem({
     <Link
       to={item.to}
       onClick={onNavigate}
-      className={`${className} transition-colors hover:bg-white/5 hover:text-yellow-400`}
+      className={`${className} transition-colors hover:text-yellow-400`}
     >
       {content}
     </Link>
