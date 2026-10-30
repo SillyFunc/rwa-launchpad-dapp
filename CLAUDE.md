@@ -24,9 +24,11 @@ RWA 资产发射平台（BSC）的前端 DApp。
 - `src/config/`：全局单例配置（`rainbowkit.ts` 链与钱包、`queryClient.ts` 共用的 QueryClient）
 - `src/providers/AppProviders.tsx`：Provider 嵌套顺序 Wagmi → QueryClient → RainbowKit，在 `main.tsx` 中包裹整个应用
 - `src/router.ts`：路由表（`createHashRouter`）；`App.tsx` 是根布局（Header + `<Outlet />` + Footer），页面作为它的子路由。页脚默认显示，个别页面在路由上加 `handle: { hideFooter: true }` 隐藏
-- `src/pages/`：页面组件（`HomePage` → `/`、`OnboardingPage` → `/onboarding`）
-- `src/components/`：通用组件（如 `WalletButton.tsx`）；`src/components/layout/`：`Header`、`Footer` 等布局组件
-- `src/utils/`：通用工具函数，`format.ts` 放显示用的格式化函数（如 `shortenAddress`）
+- `src/pages/`：页面组件（`HomePage` → `/`）
+- `src/pages/onboarding/`：KYC 两步流程，`OnboardingLayout` 下 `PersonalInfoStep` → `/onboarding`、`CompanyDocumentsStep` → `/onboarding/documents`；两步的 Zod schema、内存草稿 `useKycDraftStore` 与提交 mutation `kycMutations.ts` 同在此目录。每步提交只经过 mutation，接入后端时只改 mutation 内部
+- `src/components/`：通用组件（如 `WalletButton.tsx`）；`src/components/layout/`：`Header`、`Footer` 等布局组件；`src/components/form/`：表单通用组件（`FieldLabel`、`FieldError`、`TextField`、`AttachmentUpload`）
+- `src/stores/`：全局 UI 状态（如 `useSidebarStore`），只属于单个页面的 store 放在该页面目录内
+- `src/utils/`：通用工具函数，`format.ts` 放显示用的格式化函数（如 `shortenAddress`、`formatFileSize`），`form.ts` 放 TanStack Form 辅助函数
 - `src/assets/`：设计稿导出的静态素材
 
 ## 开发约定

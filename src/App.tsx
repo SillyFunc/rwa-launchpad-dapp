@@ -1,4 +1,4 @@
-import { Outlet, useMatches } from 'react-router'
+import { Outlet, ScrollRestoration, useMatches } from 'react-router'
 import { Footer } from '@/components/layout/Footer.tsx'
 import { Header } from '@/components/layout/Header.tsx'
 import type { RouteHandle } from './router.ts'
@@ -15,6 +15,7 @@ function App() {
         <Outlet />
       </main>
       {!hideFooter && <Footer />}
+      <ScrollRestoration />
     </div>
   )
 }

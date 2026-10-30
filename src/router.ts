@@ -1,6 +1,8 @@
 import { createHashRouter } from 'react-router'
 import { HomePage } from '@/pages/HomePage.tsx'
-import { OnboardingPage } from '@/pages/OnboardingPage.tsx'
+import { CompanyDocumentsStep } from '@/pages/onboarding/CompanyDocumentsStep.tsx'
+import { OnboardingLayout } from '@/pages/onboarding/OnboardingLayout.tsx'
+import { PersonalInfoStep } from '@/pages/onboarding/PersonalInfoStep.tsx'
 import App from './App.tsx'
 
 export type RouteHandle = {
@@ -13,7 +15,14 @@ export const router = createHashRouter([
     Component: App,
     children: [
       { index: true, Component: HomePage },
-      { path: 'onboarding', Component: OnboardingPage },
+      {
+        path: 'onboarding',
+        Component: OnboardingLayout,
+        children: [
+          { index: true, Component: PersonalInfoStep },
+          { path: 'documents', Component: CompanyDocumentsStep },
+        ],
+      },
     ],
   },
 ])
