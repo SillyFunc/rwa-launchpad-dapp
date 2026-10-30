@@ -29,7 +29,7 @@ export function HeroBanner() {
         </a>
       </div>
 
-      <div className="gradient-border mt-8 flex w-full h-7.25 items-center rounded-t-xl bg-[#0c0c0d] pr-2.5">
+      <div className="gradient-border mx-4 mt-8 flex h-7.25 items-center rounded-t-xl bg-[#0c0c0d] pr-2.5">
         <div className="relative flex h-full w-21.75 shrink-0 items-center gap-1.25 rounded-tl-xl rounded-tr-xs rounded-br-2xl bg-linear-to-r from-[#fefe00] to-[#cf4f00] pl-2.5">
           <span className="text-sm font-bold text-[#090e11]">通知公告</span>
           <span className="flex h-2 w-1.5 items-center justify-center">
