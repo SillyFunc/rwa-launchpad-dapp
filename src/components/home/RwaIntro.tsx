@@ -1,10 +1,8 @@
 import { Link } from 'react-router'
-import checkIcon from '@/assets/home/check.svg'
-import ctaArrow from '@/assets/home/cta-arrow.svg'
 import heroVisual from '@/assets/home/hero-visual.png'
 import { RippleRings } from './RippleRings.tsx'
 import { SectionHeading } from './SectionHeading.tsx'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, CircleCheck } from 'lucide-react'
 
 const featureColumns = [
   ['Fully compliant', 'Integrated KYC/KYB'],
@@ -39,12 +37,12 @@ export function RwaIntro() {
                 }
               >
                 {column.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-center gap-1 text-xs text-white opacity-80"
-                  >
-                    <img alt="" src={checkIcon} />
-                    {feature}
+                  <li key={feature} className="flex items-center gap-1">
+                    <CircleCheck
+                      strokeWidth={1.5}
+                      className="text-[#FCD438] size-3.75 shrink-0"
+                    />
+                    <span className="text-xs text-[#A0A3A7]/95">{feature}</span>
                   </li>
                 ))}
               </ul>
