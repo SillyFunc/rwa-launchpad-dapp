@@ -69,7 +69,7 @@ function SolutionCard({ title, description, icon }: Solution) {
 
 export function SolutionsSection() {
   return (
-    <section className="relative mt-13 px-4">
+    <section className="relative mt-13 px-3">
       <SectionHeading title="Professional solutions">
         <p className="mt-2.25 text-xs tracking-widest text-white opacity-60">
           Professional asset tokenization solution
