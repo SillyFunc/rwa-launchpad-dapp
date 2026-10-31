@@ -1,4 +1,4 @@
-import footerBg from '@/assets/footer-bg.webp'
+import footerBg from '@/assets/home/bg-gold-bottom.webp'
 import logo from '@/assets/logo.png'
 import facebookIcon from '@/assets/social/facebook.svg'
 import instagramIcon from '@/assets/social/instagram.svg'
@@ -28,7 +28,7 @@ export function Footer() {
         alt=""
         loading="lazy"
         decoding="async"
-        className="pointer-events-none absolute -top-30.25 left-[calc(50%-720.5px)] h-165.5 w-298 max-w-none opacity-8"
+        className="pointer-events-none absolute inset-0 size-full object-cover object-center opacity-20"
       />
 
       <div className="relative">
