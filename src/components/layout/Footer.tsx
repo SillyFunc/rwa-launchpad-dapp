@@ -22,7 +22,7 @@ const linkGroups = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden rounded-t-4xl border-t border-white/16 pt-8 pb-11">
+    <footer className="relative overflow-hidden rounded-t-4xl border-t border-[#484B51] pt-8 pb-11 bg-[#070808]">
       <img
         src={footerBg}
         alt=""
@@ -33,12 +33,20 @@ export function Footer() {
 
       <div className="relative">
         <div className="relative mx-auto h-10.5 w-33.5 overflow-hidden">
-          <img src={logo} alt="Whotel" className="absolute -top-3.5 -left-2 w-36.75 max-w-none" />
+          <img
+            src={logo}
+            alt="Whotel"
+            className="absolute -top-3.5 -left-2 w-36.75 max-w-none"
+          />
         </div>
 
         <div className="mt-3.5 flex justify-center gap-4">
           {socials.map(({ name, icon }) => (
-            <a key={name} aria-label={name} className="group relative flex size-8 items-center justify-center rounded-xl">
+            <a
+              key={name}
+              aria-label={name}
+              className="group relative flex size-8 items-center justify-center rounded-xl"
+            >
               <span className="absolute inset-0 rounded-xl bg-linear-[102.78deg] from-[#eb5a0d] to-[#f59c0b] opacity-0 group-hover:opacity-100" />
               <img src={icon} alt="" className="relative opacity-60" />
             </a>
