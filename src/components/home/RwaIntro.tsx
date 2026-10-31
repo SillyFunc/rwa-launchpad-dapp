@@ -4,6 +4,7 @@ import ctaArrow from '@/assets/home/cta-arrow.svg'
 import heroVisual from '@/assets/home/hero-visual.png'
 import { RippleRings } from './RippleRings.tsx'
 import { SectionHeading } from './SectionHeading.tsx'
+import { ChevronRight } from 'lucide-react'
 
 const featureColumns = [
   ['Fully compliant', 'Integrated KYC/KYB'],
@@ -51,18 +52,10 @@ export function RwaIntro() {
           </div>
           <Link
             to="/onboarding"
-            className="relative mt-5 flex h-10.5 items-center justify-center gap-0.75 rounded-full text-base font-medium text-[#090e11]"
+            className="relative bg-linear-to-r from-[#FEFE00] to-[#CF4F00] mt-5 flex max-w-max p-4 items-center justify-center gap-0.75 rounded-full text-[#1a1a1a]"
           >
-            <span
-              aria-hidden
-              className="absolute inset-0 rounded-full bg-linear-to-r from-[#fccc1f] to-[#efba09] opacity-10"
-            />
-            <span
-              aria-hidden
-              className="absolute inset-x-0.75 inset-y-1 rounded-full bg-linear-to-r from-[#fefe00] to-[#cf4f00]"
-            />
-            <img alt="" src={ctaArrow} className="relative" />
-            <span className="relative">To settle in</span>
+            <span className="text-base font-medium">To settle in</span>
+            <ChevronRight className="shrink-0 size-4" />
           </Link>
 
           <div
