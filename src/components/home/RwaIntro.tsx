@@ -67,7 +67,7 @@ export function RwaIntro() {
 
           <div
             aria-hidden
-            className="pointer-events-none absolute -top-2.75 left-49.75 size-59.25"
+            className="pointer-events-none absolute -top-2.75 -right-19.5 size-59.25"
           >
             <RippleRings
               size={237}
