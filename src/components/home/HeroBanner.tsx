@@ -31,14 +31,28 @@ export function HeroBanner() {
   const [isKeyboardFocused, setIsKeyboardFocused] = useState(false)
 
   useEffect(() => {
-    if (!isInView || shouldReduceMotion || isHovered || isTouching || isKeyboardFocused) return
+    if (
+      !isInView ||
+      shouldReduceMotion ||
+      isHovered ||
+      isTouching ||
+      isKeyboardFocused
+    )
+      return
 
     const timer = window.setTimeout(() => {
       setActiveIndex((current) => (current + 1) % banners.length)
     }, BANNER_INTERVAL)
 
     return () => window.clearTimeout(timer)
-  }, [activeIndex, isInView, shouldReduceMotion, isHovered, isTouching, isKeyboardFocused])
+  }, [
+    activeIndex,
+    isInView,
+    shouldReduceMotion,
+    isHovered,
+    isTouching,
+    isKeyboardFocused,
+  ])
 
   return (
     <div className="relative">
@@ -68,9 +82,10 @@ export function HeroBanner() {
             setIsKeyboardFocused(event.target.matches(':focus-visible'))
           }}
           onBlur={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget)) setIsKeyboardFocused(false)
+            if (!event.currentTarget.contains(event.relatedTarget))
+              setIsKeyboardFocused(false)
           }}
-          className="relative aspect-[1983/793] w-full overflow-hidden rounded border border-[#484B51] bg-[#171717]"
+          className="relative aspect-1983/793 w-full overflow-hidden rounded border border-[#484B51] bg-[#171717]"
         >
           {banners.map((banner, index) => (
             <motion.img
@@ -84,10 +99,14 @@ export function HeroBanner() {
               initial={false}
               animate={{ opacity: index === activeIndex ? 1 : 0 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.45 }}
-              className="absolute inset-0 size-full object-cover"
+              className="pointer-events-none absolute inset-0 size-full object-cover"
             />
           ))}
-          <div role="group" aria-label="Choose a banner" className="absolute bottom-0 left-1/2 flex -translate-x-1/2">
+          <div
+            role="group"
+            aria-label="Choose a banner"
+            className="flex h-2 items-center justify-center gap-1.25 absolute bottom-2 left-1/2 -translate-x-1/2"
+          >
             {banners.map((banner, index) => (
               <button
                 key={banner.src}
@@ -95,7 +114,7 @@ export function HeroBanner() {
                 aria-label={`Show banner ${index + 1} of ${banners.length}`}
                 aria-current={index === activeIndex ? 'true' : undefined}
                 onClick={() => setActiveIndex(index)}
-                className="grid size-9 place-items-center rounded focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-yellow-400"
+                className="grid place-items-center transition-colors h-2 w-2"
               >
                 <span
                   aria-hidden="true"
