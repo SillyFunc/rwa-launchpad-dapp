@@ -14,13 +14,18 @@ import industryIcon2 from '@/assets/home/industry-icon-2.svg'
 import industryIcon3 from '@/assets/home/industry-icon-3.svg'
 import industryIcon4 from '@/assets/home/industry-icon-4.svg'
 import industryIcon5 from '@/assets/home/industry-icon-5.svg'
+import { m } from '@/paraglide/messages.js'
 
 const industries = [
-  { label: '房地产', icon: industryIcon1 },
-  { label: '金融', icon: industryIcon2 },
-  { label: 'Web3', icon: industryIcon3 },
-  { label: '风险投资', icon: industryIcon4 },
-  { label: '娱乐', icon: industryIcon5 },
+  { id: 'real-estate', label: m.home_industry_real_estate, icon: industryIcon1 },
+  { id: 'finance', label: m.home_industry_finance, icon: industryIcon2 },
+  { id: 'web3', label: m.home_industry_web3, icon: industryIcon3 },
+  { id: 'venture', label: m.home_industry_venture, icon: industryIcon4 },
+  {
+    id: 'entertainment',
+    label: m.home_industry_entertainment,
+    icon: industryIcon5,
+  },
 ]
 
 const ORBIT_RADIUS = 120
@@ -110,8 +115,9 @@ export function IndustryOrbit() {
     <div ref={containerRef} className="absolute inset-0">
       {industries.map((industry, index) => (
         <OrbitNode
-          key={industry.label}
-          {...industry}
+          key={industry.id}
+          label={industry.label()}
+          icon={industry.icon}
           index={index}
           orbit={orbit}
           hasEntered={hasEntered}

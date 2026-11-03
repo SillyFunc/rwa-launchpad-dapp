@@ -2,43 +2,47 @@ import contractIcon from '@/assets/home/icon-contract.svg'
 import customerIcon from '@/assets/home/icon-customer.svg'
 import infraIcon from '@/assets/home/icon-infra.svg'
 import paymentIcon from '@/assets/home/icon-payment.svg'
+import { m } from '@/paraglide/messages.js'
 import { SectionHeading } from './SectionHeading.tsx'
 
-type Solution = {
-  title: string
-  description: string
-  icon: string
-}
-
-const solutions: Solution[] = [
+const solutions = [
   {
-    title: 'Customized infrastructure',
-    description: 'Fully branded investment platform.',
+    id: 'infrastructure',
+    title: m.home_solution_infra_title,
+    description: m.home_solution_infra_body,
     icon: infraIcon,
   },
   {
-    title: 'Customer Management',
-    description:
-      'Support for KYC/AML process ensuring smooth and compliant onboarding.',
+    id: 'clients',
+    title: m.home_solution_clients_title,
+    description: m.home_solution_clients_body,
     icon: customerIcon,
   },
   {
-    title: 'Smart Contracts',
-    description:
-      'Facilitates transactions, ensuring the safety of funds with escrow accounts before investment.',
+    id: 'contracts',
+    title: m.home_solution_contracts_title,
+    description: m.home_solution_contracts_body,
     icon: contractIcon,
   },
   {
-    title: 'Comprehensive Payment',
-    description:
-      'Our technology enables the issuance of security tokens and record keeping on the blockchain, providing complete transparency.',
+    id: 'payments',
+    title: m.home_solution_payments_title,
+    description: m.home_solution_payments_body,
     icon: paymentIcon,
   },
 ]
 
 const cornerDotPositions = ['left-4', 'right-4']
 
-function SolutionCard({ title, description, icon }: Solution) {
+function SolutionCard({
+  title,
+  description,
+  icon,
+}: {
+  title: string
+  description: string
+  icon: string
+}) {
   return (
     <article className="relative w-full overflow-hidden rounded-4xl bg-linear-160 from-[#232325] via-[#171718] via-45% to-[#0d0d0e] opacity-90">
       {cornerDotPositions.map((position) => (
@@ -70,14 +74,19 @@ function SolutionCard({ title, description, icon }: Solution) {
 export function SolutionsSection() {
   return (
     <section className="relative mt-13 px-3">
-      <SectionHeading title="Professional solutions">
+      <SectionHeading title={m.home_solutions_title()}>
         <p className="mt-2.25 text-xs tracking-widest text-white opacity-60">
-          Professional asset tokenization solution
+          {m.home_tagline()}
         </p>
       </SectionHeading>
       <div className="mt-4 grid grid-cols-1 gap-x-7.5 gap-y-6">
         {solutions.map((solution) => (
-          <SolutionCard key={solution.title} {...solution} />
+          <SolutionCard
+            key={solution.id}
+            title={solution.title()}
+            description={solution.description()}
+            icon={solution.icon}
+          />
         ))}
       </div>
     </section>

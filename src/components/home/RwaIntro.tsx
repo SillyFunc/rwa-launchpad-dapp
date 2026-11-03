@@ -1,30 +1,36 @@
 import { Link } from 'react-router'
+import { ChevronRight, CircleCheck } from 'lucide-react'
 import heroVisual from '@/assets/home/hero-visual.png'
+import { m } from '@/paraglide/messages.js'
 import { RippleRings } from './RippleRings.tsx'
 import { SectionHeading } from './SectionHeading.tsx'
-import { ChevronRight, CircleCheck } from 'lucide-react'
 
 const featureColumns = [
-  ['Fully compliant', 'Integrated KYC/KYB'],
-  ['No-code', 'Easy onboarding'],
-]
+  [
+    ['compliant', m.home_feature_compliant],
+    ['kyc', m.home_feature_kyc],
+  ],
+  [
+    ['no-code', m.home_feature_no_code],
+    ['onboarding', m.home_feature_onboarding],
+  ],
+] as const
 
 export function RwaIntro() {
   return (
     <section className="mt-9">
-      <SectionHeading title="Whotel RWA">
+      <SectionHeading title={m.home_rwa_title()}>
         <p className="mt-2.25 text-xs tracking-widest text-white opacity-60">
-          Professional asset tokenization solution
+          {m.home_tagline()}
         </p>
       </SectionHeading>
       <section className="relative ps-3">
         <div className="relative mx-auto mt-6.5">
           <h1 className="bg-linear-to-r from-white from-5% to-[#fcd900] bg-clip-text text-2xl font-bold text-transparent max-w-70">
-            Tokenize, trade, and manage any financial instrument
+            {m.home_rwa_headline()}
           </h1>
           <p className="mt-3 text-sm font-normal min-w-0 max-w-60 text-[#A0A3A7]">
-            Redefining access, liquidity, and transparency in real-world asset
-            tokenization
+            {m.home_rwa_body()}
           </p>
           <div className="mt-3 flex">
             {featureColumns.map((column, index) => (
@@ -36,13 +42,13 @@ export function RwaIntro() {
                     : 'flex flex-col gap-y-2.5'
                 }
               >
-                {column.map((feature) => (
-                  <li key={feature} className="flex items-center gap-1">
+                {column.map(([id, feature]) => (
+                  <li key={id} className="flex items-center gap-1">
                     <CircleCheck
                       strokeWidth={1.5}
                       className="text-[#FCD438] size-3.75 shrink-0"
                     />
-                    <span className="text-xs text-[#A0A3A7]/95">{feature}</span>
+                    <span className="text-xs text-[#A0A3A7]/95">{feature()}</span>
                   </li>
                 ))}
               </ul>
@@ -52,7 +58,9 @@ export function RwaIntro() {
             to="/onboarding"
             className="relative bg-linear-to-r from-[#FEFE00] to-[#CF4F00] mt-5 flex max-w-max p-4 items-center justify-center gap-0.75 rounded-full text-[#1a1a1a]"
           >
-            <span className="text-base font-medium">To settle in</span>
+            <span className="text-base font-medium">
+              {m.home_cta_onboarding()}
+            </span>
             <ChevronRight className="shrink-0 size-4" />
           </Link>
 

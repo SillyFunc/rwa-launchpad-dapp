@@ -6,6 +6,7 @@ import {
   useMotionValue,
   useReducedMotion,
 } from 'motion/react'
+import { m } from '@/paraglide/messages.js'
 import { SectionHeading } from './SectionHeading.tsx'
 
 import logo227 from '@/assets/home/partners/logo-227.png'
@@ -31,25 +32,25 @@ import logo246 from '@/assets/home/partners/logo-246.png'
 const SCROLL_SPEED = 30
 
 const partnerLogos = [
-  { src: logo227, name: '金色财经' },
-  { src: logo228, name: '火星财经' },
-  { src: logo229, name: '非小号' },
-  { src: logo230, name: 'CoinMarketCap' },
-  { src: logo231, name: '币安' },
-  { src: logo232, name: 'Huobi' },
-  { src: logo233, name: 'Goldman Sachs' },
-  { src: logo234, name: 'IDG Capital' },
-  { src: logo235, name: 'Morgan Stanley' },
-  { src: logo236, name: 'SoftBank' },
-  { src: logo238, name: 'Andreessen Horowitz' },
-  { src: logo239, name: 'HZD' },
-  { src: logo240, name: 'imToken' },
-  { src: logo241, name: 'MetaMask' },
-  { src: logo242, name: 'HyperPay' },
-  { src: logo243, name: 'Bitcoin' },
-  { src: logo244, name: 'Tether' },
-  { src: logo245, name: 'OpenSea' },
-  { src: logo246, name: 'Uniswap' },
+  { src: logo227, name: m.home_partner_jinse },
+  { src: logo228, name: m.home_partner_mars },
+  { src: logo229, name: m.home_partner_feixiaohao },
+  { src: logo230, name: () => 'CoinMarketCap' },
+  { src: logo231, name: m.home_partner_binance },
+  { src: logo232, name: () => 'Huobi' },
+  { src: logo233, name: () => 'Goldman Sachs' },
+  { src: logo234, name: () => 'IDG Capital' },
+  { src: logo235, name: () => 'Morgan Stanley' },
+  { src: logo236, name: () => 'SoftBank' },
+  { src: logo238, name: () => 'Andreessen Horowitz' },
+  { src: logo239, name: () => 'HZD' },
+  { src: logo240, name: () => 'imToken' },
+  { src: logo241, name: () => 'MetaMask' },
+  { src: logo242, name: () => 'HyperPay' },
+  { src: logo243, name: () => 'Bitcoin' },
+  { src: logo244, name: () => 'Tether' },
+  { src: logo245, name: () => 'OpenSea' },
+  { src: logo246, name: () => 'Uniswap' },
 ]
 
 for (let index = partnerLogos.length - 1; index > 0; index--) {
@@ -145,7 +146,7 @@ function PartnerRow({
     row.logos.map((logo) => (
       <img
         key={logo.src}
-        alt={duplicate ? '' : logo.name}
+        alt={duplicate ? '' : logo.name()}
         src={logo.src}
         className="h-full w-auto shrink-0"
       />
@@ -159,7 +160,7 @@ function PartnerRow({
       tabIndex={shouldReduceMotion ? 0 : undefined}
       role={shouldReduceMotion ? 'region' : undefined}
       aria-label={
-        shouldReduceMotion ? 'Partner logos, scroll horizontally' : undefined
+        shouldReduceMotion ? m.home_partners_scroll_label() : undefined
       }
       className={`w-full ${shouldReduceMotion ? 'overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400' : 'overflow-hidden'}`}
     >
@@ -186,7 +187,7 @@ function PartnerRow({
 export function PartnersSection() {
   return (
     <section className="relative mt-8">
-      <SectionHeading title="Partners" />
+      <SectionHeading title={m.home_partners_title()} />
       <div className="mt-11 flex flex-col gap-6">
         {partnerRows.map((row, index) => (
           <PartnerRow key={index} row={row} reverse={index % 2 === 1} />

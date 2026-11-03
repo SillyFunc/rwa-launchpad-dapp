@@ -1,4 +1,5 @@
 import industryCore from '@/assets/home/industry-core.png'
+import { m } from '@/paraglide/messages.js'
 import { IndustryOrbit } from './IndustryOrbit.tsx'
 import { RippleRings } from './RippleRings.tsx'
 import { SectionHeading } from './SectionHeading.tsx'
@@ -6,11 +7,9 @@ import { SectionHeading } from './SectionHeading.tsx'
 export function IndustrySection() {
   return (
     <section className="relative mt-13 px-3">
-      <SectionHeading title="Industry">
+      <SectionHeading title={m.home_industry_title()}>
         <p className="mt-2.25 text-center text-xs leading-4 text-white opacity-60">
-          Explore how businesses across different industries are using RWA to
-          improve efficiency, increase accessibility, and unlock new
-          opportunities.
+          {m.home_industry_body()}
         </p>
       </SectionHeading>
 
