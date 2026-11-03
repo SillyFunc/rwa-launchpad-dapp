@@ -54,5 +54,8 @@
   "footer_company": "公司",
   "footer_articles": "文章",
   "footer_contact": "聯繫我們",
-  "footer_copyright": "©2026 Whotel. 版權所有。"
+  "footer_copyright": "©2026 Whotel. 版權所有。",
+  "onboarding_tabs_label": "入駐分頁",
+  "onboarding_tab_profile": "入駐資訊",
+  "onboarding_tab_launches": "發行列表"
 }

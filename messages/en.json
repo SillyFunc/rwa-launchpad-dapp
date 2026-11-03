@@ -54,5 +54,8 @@
   "footer_company": "Company",
   "footer_articles": "Articles",
   "footer_contact": "Contact",
-  "footer_copyright": "©2026 Whotel. All rights reserved."
+  "footer_copyright": "©2026 Whotel. All rights reserved.",
+  "onboarding_tabs_label": "Registration sections",
+  "onboarding_tab_profile": "Onboarding info",
+  "onboarding_tab_launches": "Launch list"
 }
