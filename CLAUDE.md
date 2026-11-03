@@ -30,6 +30,10 @@ RWA 资产发射平台（BSC）的前端 DApp。
 - `src/stores/`：全局 UI 状态（如 `useSidebarStore`），只属于单个页面的 store 放在该页面目录内
 - `src/utils/`：通用工具函数，`format.ts` 放显示用的格式化函数（如 `shortenAddress`、`formatFileSize`），`form.ts` 放 TanStack Form 辅助函数
 - `src/assets/`：设计稿导出的静态素材
+- `messages/`：Paraglide 翻译源文件，只支持 `en`（默认与回退）和 `zh-Hant`。新增文案同时写入这两个 JSON，不要手改 `src/paraglide/`
+- `project.inlang/`：inlang 项目与 Paraglide 编译配置。语言解析顺序是 cookie → 自定义浏览器语言 → `preferredLanguage` → `baseLocale`；手动选择写入 cookie，优先于浏览器语言，且不使用 URL 语言路由
+- `src/i18n/`：浏览器语言协商（`zh-TW` / `zh-HK` / `zh-MO` / `zh-Hant` → `zh-Hant`）与 `getLocale` / `setLocale` 出口。组件中用 `@/paraglide/messages.js` 的 `m` 调用翻译函数
+- `src/paraglide/`：Paraglide 编译产物，已加入 `.gitignore`。`pnpm build` 会先编译再做类型检查；开发时由 Vite 插件生成并监听翻译文件
 
 ## 开发约定
 

@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router'
 import { useReducedMotion } from 'motion/react'
 import { Popup } from 'tdesign-mobile-react'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher.tsx'
 import { useSidebarStore } from '@/stores/useSidebarStore.ts'
 import logoUrl from '@/assets/logo.svg'
 import closeIcon from '@/assets/navigation/close.svg'
-import chevronDownIcon from '@/assets/navigation/chevron-down.svg'
 import socialCircle from '@/assets/navigation/social-circle.svg'
 import {
   sidebarNavigationGroups,
@@ -131,17 +131,7 @@ export function Sidebar() {
           </nav>
 
           <div className="mt-4">
-            <button
-              type="button"
-              disabled
-              aria-label="语言：English"
-              title="暂未配置其他语言"
-              className="relative flex h-10 w-full cursor-not-allowed items-center justify-center gap-1 rounded-full bg-slate-700 text-sm"
-            >
-              <span aria-hidden>🇺🇸</span>
-              English
-              <img src={chevronDownIcon} alt="" className="absolute right-5" />
-            </button>
+            <LanguageSwitcher />
 
             <div className="mt-4 flex items-center justify-between">
               {sidebarSocialLinks.map(({ label, icon, href }) => {
