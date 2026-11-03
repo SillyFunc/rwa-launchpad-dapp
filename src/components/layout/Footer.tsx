@@ -5,6 +5,7 @@ import instagramIcon from '@/assets/social/instagram.svg'
 import telegramIcon from '@/assets/social/telegram.svg'
 import xIcon from '@/assets/social/x.svg'
 import youtubeIcon from '@/assets/social/youtube.svg'
+import { m } from '@/paraglide/messages.js'
 
 const socials = [
   { name: 'X', icon: xIcon },
@@ -15,9 +16,33 @@ const socials = [
 ]
 
 const linkGroups = [
-  { title: '項目', links: ['鑄造', 'RWA', '邀請'] },
-  { title: '關於我們', links: ['官網', '幫助中心', '白皮書'] },
-  { title: '公司', links: ['關於我們', '文章', '聯系我們'] },
+  {
+    id: 'projects',
+    title: m.footer_projects,
+    links: [
+      { id: 'mint', label: m.footer_mint },
+      { id: 'rwa', label: m.footer_rwa },
+      { id: 'invite', label: m.footer_invite },
+    ],
+  },
+  {
+    id: 'about',
+    title: m.footer_about,
+    links: [
+      { id: 'website', label: m.footer_website },
+      { id: 'help', label: m.footer_help },
+      { id: 'whitepaper', label: m.footer_whitepaper },
+    ],
+  },
+  {
+    id: 'company',
+    title: m.footer_company,
+    links: [
+      { id: 'about', label: m.footer_about },
+      { id: 'articles', label: m.footer_articles },
+      { id: 'contact', label: m.footer_contact },
+    ],
+  },
 ]
 
 export function Footer() {
@@ -56,13 +81,13 @@ export function Footer() {
         <div className="mx-4 mt-5.75 h-px bg-linear-to-r from-[rgba(54,98,254,0)] via-[#00e5ff] via-[51.923%] to-[rgba(54,98,254,0)] opacity-40" />
 
         <nav className="mx-auto mt-10 flex w-67.5 justify-between">
-          {linkGroups.map(({ title, links }) => (
-            <div key={title} className="flex flex-col items-center">
-              <h3 className="text-sm font-semibold">{title}</h3>
+          {linkGroups.map((group) => (
+            <div key={group.id} className="flex flex-col items-center">
+              <h3 className="text-sm font-semibold">{group.title()}</h3>
               <ul className="mt-4.5 flex flex-col items-center gap-3.75 text-xs">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a className="opacity-80">{link}</a>
+                {group.links.map((link) => (
+                  <li key={link.id}>
+                    <a className="opacity-80">{link.label()}</a>
                   </li>
                 ))}
               </ul>
@@ -71,7 +96,7 @@ export function Footer() {
         </nav>
 
         <div className="mt-10 border-t border-white/10 pt-5 text-center text-xs">
-          ©2026 Whotel. All Rights Reserved
+          {m.footer_copyright()}
         </div>
       </div>
     </footer>
