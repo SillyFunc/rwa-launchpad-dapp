@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { motion, useScroll, useTransform } from 'motion/react'
-import { WalletButton } from '@/components/WalletButton.tsx'
+import { WalletButton } from '@/components/common/WalletButton.tsx'
 import { useSidebarStore } from '@/stores/useSidebarStore.ts'
 import { Sidebar } from './Sidebar.tsx'
 import logoUrl from '@/assets/logo.svg?url'
