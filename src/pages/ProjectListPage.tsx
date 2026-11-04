@@ -1,4 +1,5 @@
 import rwaAssetsBanner from '@/assets/home/banner-rwa-assets.webp'
+import { m } from '@/paraglide/messages.js'
 
 export const ProjectListPage = () => {
   return (
@@ -42,11 +43,11 @@ export const ProjectListPage = () => {
           </div>
           <div className="flex flex-col gap-2.5">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-[#A0A3A7]">Start In</span>
+              <span className="text-[#A0A3A7]">{m.project_start_in()}</span>
               <span className="text-white">2025.09.30 16:00</span>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-[#A0A3A7]">End In</span>
+              <span className="text-[#A0A3A7]">{m.project_end_in()}</span>
               <span className="text-white">2025.09.30 16:00</span>
             </div>
           </div>
@@ -54,10 +55,10 @@ export const ProjectListPage = () => {
         <div className="bg-linear-to-r from-[#FCCC1F]/10 to-[#EFBA09]/10 p-1 rounded-full">
           <button
             type="button"
-            aria-label="查看详情"
+            aria-label={m.project_see_more_aria()}
             className="w-full h-10 uppercase text-base font-semibold text-[#090E11] rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] cursor-pointer focus-visible:outline-none"
           >
-            SEE MORE
+            {m.project_see_more()}
           </button>
         </div>
       </div>

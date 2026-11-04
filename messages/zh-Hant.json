@@ -121,5 +121,9 @@
   "attachments": "附件",
   "upload_named": "上傳{label}",
   "remove_named": "移除{label}",
-  "remove_file": "移除 {name}"
+  "remove_file": "移除 {name}",
+  "project_start_in": "開始時間",
+  "project_end_in": "結束時間",
+  "project_see_more": "查看詳情",
+  "project_see_more_aria": "查看詳情"
 }

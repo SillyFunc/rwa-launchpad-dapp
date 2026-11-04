@@ -121,5 +121,9 @@
   "attachments": "Attachment(s)",
   "upload_named": "Upload {label}",
   "remove_named": "Remove {label}",
-  "remove_file": "Remove {name}"
+  "remove_file": "Remove {name}",
+  "project_start_in": "Start In",
+  "project_end_in": "End In",
+  "project_see_more": "SEE MORE",
+  "project_see_more_aria": "View details"
 }
