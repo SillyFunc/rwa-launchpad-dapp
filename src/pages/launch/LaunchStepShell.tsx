@@ -7,7 +7,7 @@ export function LaunchStepShell({
 }: {
   title: string
   description: string
-  children: ReactNode
+  children?: ReactNode
 }) {
   return (
     <section
