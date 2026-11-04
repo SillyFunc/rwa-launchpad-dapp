@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { ChevronRight, CircleCheck } from 'lucide-react'
+import { CircleCheck, MousePointer2 } from 'lucide-react'
 import heroVisual from '@/assets/home/hero-visual.png'
 import { m } from '@/paraglide/messages.js'
 import { RippleRings } from './RippleRings.tsx'
@@ -48,7 +48,9 @@ export function RwaIntro() {
                       strokeWidth={1.5}
                       className="text-[#FCD438] size-3.75 shrink-0"
                     />
-                    <span className="text-xs text-[#A0A3A7]/95">{feature()}</span>
+                    <span className="text-xs text-[#A0A3A7]/95">
+                      {feature()}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -56,12 +58,12 @@ export function RwaIntro() {
           </div>
           <Link
             to="/onboarding"
-            className="relative bg-linear-to-r from-[#FEFE00] to-[#CF4F00] mt-5 flex max-w-max p-4 items-center justify-center gap-0.75 rounded-full text-[#1a1a1a]"
+            className="relative bg-linear-to-r from-[#FEFE00] to-[#CF4F00] mt-5 flex max-w-max px-6 h-10.75 items-center justify-center gap-1 rounded-full text-[#1a1a1a]"
           >
-            <span className="text-base font-medium">
+            <MousePointer2 className="shrink-0 size-6 text-[#090E11]" />
+            <span className="text-base uppercase font-semibold min-w-0 text-[#090E11] leading-none">
               {m.home_cta_onboarding()}
             </span>
-            <ChevronRight className="shrink-0 size-4" />
           </Link>
 
           <div
