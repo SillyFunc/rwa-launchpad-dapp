@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router'
+import { NavLink } from 'react-router'
 import { useReducedMotion } from 'motion/react'
 import { Popup } from 'tdesign-mobile-react'
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher.tsx'
@@ -37,13 +37,16 @@ function NavigationItem({
   )
 
   return item.to ? (
-    <Link
+    <NavLink
       to={item.to}
+      end={item.to === '/'}
       onClick={onNavigate}
-      className={`${className} transition-colors hover:text-yellow-400`}
+      className={({ isActive }) =>
+        `${className} transition-colors hover:text-yellow-400 ${isActive ? 'text-yellow-400' : ''}`
+      }
     >
       {content}
-    </Link>
+    </NavLink>
   ) : (
     <button
       type="button"
