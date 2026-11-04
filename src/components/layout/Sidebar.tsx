@@ -3,6 +3,7 @@ import { NavLink } from 'react-router'
 import { useReducedMotion } from 'motion/react'
 import { Popup } from 'tdesign-mobile-react'
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher.tsx'
+import { m } from '@/paraglide/messages.js'
 import { useSidebarStore } from '@/stores/useSidebarStore.ts'
 import logoUrl from '@/assets/logo.svg'
 import closeIcon from '@/assets/navigation/close.svg'
@@ -32,7 +33,7 @@ function NavigationItem({
       >
         <img src={item.icon} alt="" />
       </span>
-      {item.label}
+      {item.label()}
     </>
   )
 
@@ -51,7 +52,7 @@ function NavigationItem({
     <button
       type="button"
       disabled
-      title="链接暂未配置"
+      title={m.sidebar_link_unavailable()}
       className={`${className} cursor-not-allowed`}
     >
       {content}
@@ -103,14 +104,14 @@ export function Sidebar() {
           className="pointer-events-auto min-h-0 w-full overflow-y-auto overscroll-contain rounded-2xl bg-[#202020] p-6 text-white"
         >
           <h2 id="sidebar-title" className="sr-only">
-            Navigation menu
+            {m.sidebar_menu_title()}
           </h2>
           <div className="flex h-6 items-center justify-between">
             <img src={logoUrl} alt="Whotel" className="shrink-0" />
             <button
               ref={closeButtonRef}
               type="button"
-              aria-label="关闭菜单"
+              aria-label={m.sidebar_close()}
               onClick={close}
               className={`flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md bg-linear-to-r from-yellow-400 to-amber-400 transition-opacity hover:opacity-80 ${focusClassName}`}
             >
@@ -118,14 +119,14 @@ export function Sidebar() {
             </button>
           </div>
 
-          <nav aria-label="主导航" className="mt-5">
+          <nav aria-label={m.sidebar_nav_label()} className="mt-5">
             {sidebarNavigationGroups.map((group, index) => (
               <ul
-                key={group[0].label}
+                key={group[0].id}
                 className={`flex flex-col gap-0.5 ${index > 0 ? 'mt-3 border-t border-white/15 pt-2' : ''}`}
               >
                 {group.map((item) => (
-                  <li key={item.label}>
+                  <li key={item.id}>
                     <NavigationItem item={item} onNavigate={close} />
                   </li>
                 ))}
@@ -137,7 +138,7 @@ export function Sidebar() {
             <LanguageSwitcher />
 
             <div className="mt-4 flex items-center justify-between">
-              {sidebarSocialLinks.map(({ label, icon, href }) => {
+              {sidebarSocialLinks.map(({ id, label, icon, href }) => {
                 const content = (
                   <>
                     <img
@@ -152,20 +153,20 @@ export function Sidebar() {
 
                 return href ? (
                   <a
-                    key={label}
+                    key={id}
                     href={href}
-                    aria-label={label}
+                    aria-label={label()}
                     className={className}
                   >
                     {content}
                   </a>
                 ) : (
                   <button
-                    key={label}
+                    key={id}
                     type="button"
                     disabled
-                    aria-label={label}
-                    title="链接暂未配置"
+                    aria-label={label()}
+                    title={m.sidebar_link_unavailable()}
                     className={`${className} cursor-not-allowed`}
                   >
                     {content}

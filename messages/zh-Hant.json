@@ -63,5 +63,19 @@
   "onboarding_launch_filter_reviewing": "審核中",
   "onboarding_launch_filter_failed": "審核失敗",
   "onboarding_launch_filter_pending": "待發行",
-  "onboarding_launch_filter_issued": "已發行"
+  "onboarding_launch_filter_issued": "已發行",
+  "sidebar_menu_title": "導覽選單",
+  "sidebar_nav_label": "主導航",
+  "sidebar_close": "關閉選單",
+  "sidebar_link_unavailable": "連結暫未配置",
+  "sidebar_nav_home": "首頁",
+  "sidebar_nav_products": "產品列表",
+  "sidebar_nav_onboarding": "入駐",
+  "sidebar_nav_launch": "發行",
+  "sidebar_nav_console": "控制台",
+  "sidebar_nav_gameplay": "玩法說明",
+  "sidebar_nav_announcement": "公告",
+  "sidebar_social_x": "X",
+  "sidebar_social_telegram": "Telegram",
+  "sidebar_social_email": "電子郵件"
 }

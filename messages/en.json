@@ -63,5 +63,19 @@
   "onboarding_launch_filter_reviewing": "Reviewing",
   "onboarding_launch_filter_failed": "Failed",
   "onboarding_launch_filter_pending": "Pending",
-  "onboarding_launch_filter_issued": "Issued"
+  "onboarding_launch_filter_issued": "Issued",
+  "sidebar_menu_title": "Navigation menu",
+  "sidebar_nav_label": "Main navigation",
+  "sidebar_close": "Close menu",
+  "sidebar_link_unavailable": "Link not configured yet",
+  "sidebar_nav_home": "Home",
+  "sidebar_nav_products": "Product List",
+  "sidebar_nav_onboarding": "Settle in",
+  "sidebar_nav_launch": "Launch",
+  "sidebar_nav_console": "Console",
+  "sidebar_nav_gameplay": "Gameplay details",
+  "sidebar_nav_announcement": "Announcement",
+  "sidebar_social_x": "X",
+  "sidebar_social_telegram": "Telegram",
+  "sidebar_social_email": "Email"
 }
