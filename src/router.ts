@@ -4,7 +4,9 @@ import { CompanyDocumentsStep } from '@/pages/onboarding/CompanyDocumentsStep.ts
 import { OnboardingLayout } from '@/pages/onboarding/OnboardingLayout.tsx'
 import { PersonalInfoStep } from '@/pages/onboarding/PersonalInfoStep.tsx'
 import App from './App.tsx'
-import { LaunchPage } from './pages/LaunchPage.tsx'
+import { AssetDescriptionStep } from '@/pages/launch/AssetDescriptionStep.tsx'
+import { AssetTypeStep } from '@/pages/launch/AssetTypeStep.tsx'
+import { LaunchLayout } from '@/pages/launch/LaunchLayout.tsx'
 import { ProjectListPage } from './pages/ProjectListPage.tsx'
 
 export type RouteHandle = {
@@ -17,7 +19,14 @@ export const router = createHashRouter([
     Component: App,
     children: [
       { index: true, Component: HomePage },
-      { path: 'launch', Component: LaunchPage },
+      {
+        path: 'launch',
+        Component: LaunchLayout,
+        children: [
+          { index: true, Component: AssetTypeStep },
+          { path: 'details', Component: AssetDescriptionStep },
+        ],
+      },
       { path: 'projectList', Component: ProjectListPage },
       {
         path: 'onboarding',

@@ -81,6 +81,8 @@
   "launch_title": "Launch",
   "launch_heading": "Start building your RWA digital asset",
   "launch_body": "Need funds? Want to share in the profits? Choose the digital asset that meets your goals",
+  "launch_details_heading": "Supplement asset detailed description",
+  "launch_details_body": "Supplement asset description so that users can see specific asset information",
   "launch_type_legend": "Choose your digital asset type",
   "launch_type_real_estate": "Real estate assets",
   "launch_type_equity": "Equity digital assets",
