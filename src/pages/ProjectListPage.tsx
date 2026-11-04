@@ -1,9 +1,11 @@
 import rwaAssetsBanner from '@/assets/home/banner-rwa-assets.webp'
 import { m } from '@/paraglide/messages.js'
+import { useNavigate } from 'react-router'
 
 export const ProjectListPage = () => {
+  const nav = useNavigate()
   return (
-    <div className="px-3 py-6">
+    <div className="px-3 py-6" onClick={() => nav('/projectDetail')}>
       <div className="rounded-3xl border border-[#FCD438] p-3 bg-[#1D1D1D]">
         <div className="mb-3">
           <div className="relative h-71.25 w-full overflow-hidden rounded-2xl">
