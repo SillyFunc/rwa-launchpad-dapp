@@ -57,5 +57,11 @@
   "footer_copyright": "©2026 Whotel. 版權所有。",
   "onboarding_tabs_label": "入駐分頁",
   "onboarding_tab_profile": "入駐資訊",
-  "onboarding_tab_launches": "發行列表"
+  "onboarding_tab_launches": "發行列表",
+  "onboarding_launch_filter_label": "依狀態篩選",
+  "onboarding_launch_filter_all": "全部",
+  "onboarding_launch_filter_reviewing": "審核中",
+  "onboarding_launch_filter_failed": "審核失敗",
+  "onboarding_launch_filter_pending": "待發行",
+  "onboarding_launch_filter_issued": "已發行"
 }

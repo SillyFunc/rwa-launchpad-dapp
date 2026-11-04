@@ -57,5 +57,11 @@
   "footer_copyright": "©2026 Whotel. All rights reserved.",
   "onboarding_tabs_label": "Registration sections",
   "onboarding_tab_profile": "Onboarding info",
-  "onboarding_tab_launches": "Launch list"
+  "onboarding_tab_launches": "Launch list",
+  "onboarding_launch_filter_label": "Filter by status",
+  "onboarding_launch_filter_all": "All",
+  "onboarding_launch_filter_reviewing": "Reviewing",
+  "onboarding_launch_filter_failed": "Failed",
+  "onboarding_launch_filter_pending": "Pending",
+  "onboarding_launch_filter_issued": "Issued"
 }
