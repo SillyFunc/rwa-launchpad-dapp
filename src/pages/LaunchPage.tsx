@@ -5,29 +5,30 @@ import equityIcon from '@/assets/launch/equity.svg'
 import incomeIcon from '@/assets/launch/income.svg'
 import realEstateIcon from '@/assets/launch/real-estate.svg'
 import { PageTitle } from '@/components/common/PageTitle.tsx'
+import { m } from '@/paraglide/messages.js'
 
 const assetTypes = [
   {
     value: 'real-estate',
-    label: 'Real estate assets',
+    label: m.launch_type_real_estate,
     icon: realEstateIcon,
     disabled: false,
   },
   {
     value: 'equity',
-    label: 'Equity digital assets',
+    label: m.launch_type_equity,
     icon: equityIcon,
     disabled: true,
   },
   {
     value: 'debt',
-    label: 'Debt digital assets',
+    label: m.launch_type_debt,
     icon: debtIcon,
     disabled: true,
   },
   {
     value: 'income',
-    label: 'Income digital assets',
+    label: m.launch_type_income,
     icon: incomeIcon,
     disabled: true,
   },
@@ -36,7 +37,7 @@ const assetTypes = [
 export const LaunchPage = () => {
   return (
     <div className="px-4 py-4">
-      <PageTitle title="Launch" />
+      <PageTitle title={m.launch_title()} />
       <section
         aria-labelledby="launch-heading"
         className="gradient-border mt-5 flex flex-col items-center rounded-3xl bg-linear-to-br from-[#4A5F73]/25 to-[#24313F]/25 px-4 py-6"
@@ -45,14 +46,13 @@ export const LaunchPage = () => {
           id="launch-heading"
           className="max-w-2xs bg-linear-to-br from-[#EEEEEE] to-[#FCD438] bg-clip-text text-center text-xl leading-tight font-semibold text-transparent"
         >
-          Start building your RWA digital asset
+          {m.launch_heading()}
         </h2>
         <p className="mt-2 text-center text-xs leading-tight text-white">
-          Need funds? Want to share in the profits? Choose the digital asset
-          that meets your goals
+          {m.launch_body()}
         </p>
         <fieldset className="mt-5 flex w-full min-w-0 flex-col gap-4">
-          <legend className="sr-only">Choose your digital asset type</legend>
+          <legend className="sr-only">{m.launch_type_legend()}</legend>
           {assetTypes.map(({ value, label, icon, disabled }) => (
             <label
               key={value}
@@ -76,7 +76,7 @@ export const LaunchPage = () => {
               <span
                 className={`min-w-0 flex-1 text-sm leading-5 ${disabled ? 'text-white/40' : 'text-white'}`}
               >
-                {label}
+                {label()}
               </span>
               <ChevronRight
                 aria-hidden
@@ -94,7 +94,7 @@ export const LaunchPage = () => {
           size="large"
           className="mt-6 bg-linear-to-r! from-[#FEFE00] to-[#CF4F00] [--td-button-border-width:0] focus-visible:outline-2! focus-visible:outline-offset-4 focus-visible:outline-yellow-400"
         >
-          <span className="text-base font-semibold">Next</span>
+          <span className="text-base font-semibold">{m.launch_next()}</span>
         </Button>
       </section>
     </div>

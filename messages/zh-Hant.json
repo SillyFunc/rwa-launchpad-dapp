@@ -77,5 +77,14 @@
   "sidebar_nav_announcement": "公告",
   "sidebar_social_x": "X",
   "sidebar_social_telegram": "Telegram",
-  "sidebar_social_email": "電子郵件"
+  "sidebar_social_email": "電子郵件",
+  "launch_title": "發行",
+  "launch_heading": "開始建立你的 RWA 數位資產",
+  "launch_body": "需要資金？想分享收益？選擇符合你目標的數位資產",
+  "launch_type_legend": "選擇數位資產類型",
+  "launch_type_real_estate": "房地產資產",
+  "launch_type_equity": "股權數位資產",
+  "launch_type_debt": "債權數位資產",
+  "launch_type_income": "收益數位資產",
+  "launch_next": "下一步"
 }

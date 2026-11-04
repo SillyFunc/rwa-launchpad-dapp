@@ -77,5 +77,14 @@
   "sidebar_nav_announcement": "Announcement",
   "sidebar_social_x": "X",
   "sidebar_social_telegram": "Telegram",
-  "sidebar_social_email": "Email"
+  "sidebar_social_email": "Email",
+  "launch_title": "Launch",
+  "launch_heading": "Start building your RWA digital asset",
+  "launch_body": "Need funds? Want to share in the profits? Choose the digital asset that meets your goals",
+  "launch_type_legend": "Choose your digital asset type",
+  "launch_type_real_estate": "Real estate assets",
+  "launch_type_equity": "Equity digital assets",
+  "launch_type_debt": "Debt digital assets",
+  "launch_type_income": "Income digital assets",
+  "launch_next": "Next"
 }
