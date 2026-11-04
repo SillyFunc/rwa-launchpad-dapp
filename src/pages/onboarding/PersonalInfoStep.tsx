@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { revalidateLogic, useForm, type AnyFieldApi } from '@tanstack/react-form'
+import {
+  revalidateLogic,
+  useForm,
+  type AnyFieldApi,
+} from '@tanstack/react-form'
 import { ImageUploadSlot } from '@/components/common/ImageUploadSlot.tsx'
 import { FieldError } from '@/components/form/FieldError.tsx'
 import { FieldLabel } from '@/components/form/FieldLabel.tsx'
@@ -118,7 +122,7 @@ export function PersonalInfoStep() {
         <button
           type="submit"
           disabled={savePersonalInfo.isPending}
-          className="cursor-pointer w-full h-12 rounded-2xl bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-[#090E11] text-base font-semibold disabled:opacity-60"
+          className="cursor-pointer w-full h-12 rounded-2xl bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-[#090E11] text-base font-semibold disabled:opacity-60 uppercase"
         >
           {m.kyc_next()}
         </button>
