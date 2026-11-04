@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
 import { PageTitle } from '@/components/common/PageTitle.tsx'
+import { LaunchStatusFilter } from './LaunchStatusFilter.tsx'
 import { OnboardingTabs, type OnboardingTab } from './OnboardingTabs.tsx'
 
 export function OnboardingLayout() {
@@ -23,7 +24,9 @@ export function OnboardingLayout() {
         role="tabpanel"
         aria-labelledby="onboarding-tab-launches"
         hidden={tab !== 'launches'}
-      />
+      >
+        <LaunchStatusFilter />
+      </div>
     </div>
   )
 }
