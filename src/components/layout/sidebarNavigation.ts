@@ -24,7 +24,7 @@ type SidebarSocialLink = {
 export const sidebarNavigationGroups: SidebarNavigationItem[][] = [
   [
     { label: 'Home', icon: homeIcon, to: '/' },
-    { label: 'Product List', icon: productsIcon },
+    { label: 'Product List', icon: productsIcon, to: '/projectList' },
     { label: 'Settle in', icon: onboardingIcon, to: '/onboarding' },
     { label: 'Launch', icon: launchIcon },
     { label: 'Console', icon: consoleIcon },
