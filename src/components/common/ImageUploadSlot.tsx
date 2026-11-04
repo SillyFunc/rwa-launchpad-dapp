@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Camera, X } from 'lucide-react'
+import { m } from '@/paraglide/messages.js'
 
 type ImageUploadSlotProps = {
   id: string
@@ -46,7 +47,7 @@ export function ImageUploadSlot({
         ref={triggerRef}
         id={id}
         type="button"
-        aria-label={`上传${label}`}
+        aria-label={m.upload_named({ label })}
         aria-invalid={invalid}
         aria-describedby={describedBy}
         onClick={() => inputRef.current?.click()}
@@ -62,14 +63,14 @@ export function ImageUploadSlot({
         ) : (
           <>
             <Camera className="size-6" strokeWidth={1.5} />
-            <span className="text-xs">Upload</span>
+            <span className="text-xs">{m.upload()}</span>
           </>
         )}
       </button>
       {file && (
         <button
           type="button"
-          aria-label={`移除${label}`}
+          aria-label={m.remove_named({ label })}
           onClick={() => {
             onChange(null)
             triggerRef.current?.focus()

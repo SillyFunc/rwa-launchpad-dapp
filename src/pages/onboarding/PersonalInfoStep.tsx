@@ -6,6 +6,7 @@ import { FieldError } from '@/components/form/FieldError.tsx'
 import { FieldLabel } from '@/components/form/FieldLabel.tsx'
 import { TextField } from '@/components/form/TextField.tsx'
 import { getFieldError } from '@/utils/form.ts'
+import { m } from '@/paraglide/messages.js'
 import { useSavePersonalInfo } from './kycMutations.ts'
 import {
   ACCEPTED_IMAGE_TYPES,
@@ -54,7 +55,7 @@ export function PersonalInfoStep() {
   })
 
   return (
-    <StepCard title="Personal information">
+    <StepCard title={m.kyc_personal_title()}>
       <form
         noValidate
         className="flex flex-col items-stretch mt-5 gap-6"
@@ -70,8 +71,8 @@ export function PersonalInfoStep() {
             {(field) => (
               <TextField
                 field={field}
-                label="First name"
-                placeholder="First name"
+                label={m.kyc_first_name()}
+                placeholder={m.kyc_first_name()}
               />
             )}
           </form.Field>
@@ -79,8 +80,8 @@ export function PersonalInfoStep() {
             {(field) => (
               <TextField
                 field={field}
-                label="Last name"
-                placeholder="Last name"
+                label={m.kyc_last_name()}
+                placeholder={m.kyc_last_name()}
               />
             )}
           </form.Field>
@@ -90,8 +91,8 @@ export function PersonalInfoStep() {
             <TextField
               field={field}
               type="email"
-              label="Email"
-              placeholder="Enter Email"
+              label={m.kyc_email()}
+              placeholder={m.kyc_email_placeholder()}
             />
           )}
         </form.Field>
@@ -100,13 +101,17 @@ export function PersonalInfoStep() {
           aria-labelledby="idPhoto-label"
           className="flex flex-col gap-3.5"
         >
-          <FieldLabel id="idPhoto-label">Upload ID photo</FieldLabel>
+          <FieldLabel id="idPhoto-label">{m.kyc_id_photo()}</FieldLabel>
           <div className="grid grid-cols-2 gap-2.5">
             <form.Field name="idPhotoFront">
-              {(field) => <IdPhotoField field={field} label="证件正面" />}
+              {(field) => (
+                <IdPhotoField field={field} label={m.kyc_id_front()} />
+              )}
             </form.Field>
             <form.Field name="idPhotoBack">
-              {(field) => <IdPhotoField field={field} label="证件反面" />}
+              {(field) => (
+                <IdPhotoField field={field} label={m.kyc_id_back()} />
+              )}
             </form.Field>
           </div>
         </div>
@@ -115,7 +120,7 @@ export function PersonalInfoStep() {
           disabled={savePersonalInfo.isPending}
           className="cursor-pointer w-full h-12 rounded-2xl bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-[#090E11] text-base font-semibold disabled:opacity-60"
         >
-          下一步
+          {m.kyc_next()}
         </button>
       </form>
     </StepCard>

@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { CirclePlus, FileText, X } from 'lucide-react'
 import { formatFileSize } from '@/utils/format.ts'
+import { m } from '@/paraglide/messages.js'
 
 type AttachmentUploadProps = {
   id: string
@@ -47,7 +48,7 @@ export function AttachmentUpload({
         className={`flex h-10.5 w-full items-center justify-center gap-2 rounded-xl border border-dashed ${invalid ? 'border-[#FF0000]' : 'border-white/40'} bg-black/30 text-base font-semibold text-[#FCD438] cursor-pointer aria-disabled:cursor-not-allowed aria-disabled:opacity-40`}
       >
         <CirclePlus aria-hidden className="size-5" strokeWidth={1.5} />
-        Attachment(s)
+        {m.attachments()}
       </button>
       {files.length > 0 && (
         <ul className="flex flex-col gap-1.5">
@@ -63,7 +64,7 @@ export function AttachmentUpload({
               </span>
               <button
                 type="button"
-                aria-label={`移除 ${file.name}`}
+                aria-label={m.remove_file({ name: file.name })}
                 onClick={() => {
                   onChange(files.filter((_, i) => i !== index))
                   triggerRef.current?.focus()

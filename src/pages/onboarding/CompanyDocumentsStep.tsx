@@ -5,6 +5,7 @@ import { AttachmentUpload } from '@/components/form/AttachmentUpload.tsx'
 import { FieldError } from '@/components/form/FieldError.tsx'
 import { FieldLabel } from '@/components/form/FieldLabel.tsx'
 import { getFieldError } from '@/utils/form.ts'
+import { m } from '@/paraglide/messages.js'
 import { useSubmitKyc } from './kycMutations.ts'
 import {
   ATTACHMENT_TYPES,
@@ -17,15 +18,16 @@ import { StepCard } from './StepCard.tsx'
 import { useKycDraftStore } from './useKycDraftStore.ts'
 
 const documentFields = [
-  { name: 'certificateOfIncorporation', label: 'Certificate of Incorporation' },
-  { name: 'articlesOfAssociation', label: 'Articles of Association' },
-  { name: 'shareholderRegister', label: 'Shareholder Register' },
-  { name: 'directorRegister', label: 'Director Register' },
-  { name: 'organizationChart', label: 'Organization Chart' },
-  { name: 'certificateOfIncumbency', label: 'Certificate of Incumbency' },
+  {
+    name: 'certificateOfIncorporation',
+    label: m.kyc_doc_incorporation,
+  },
+  { name: 'articlesOfAssociation', label: m.kyc_doc_articles },
+  { name: 'shareholderRegister', label: m.kyc_doc_shareholder },
+  { name: 'directorRegister', label: m.kyc_doc_director },
+  { name: 'organizationChart', label: m.kyc_doc_org_chart },
+  { name: 'certificateOfIncumbency', label: m.kyc_doc_incumbency },
 ] as const
-
-const attachmentHint = `Supported format: PDF, JPEG, PNG. ${MAX_ATTACHMENTS} files at maximum, each file should not exceed ${MAX_ATTACHMENT_SIZE_MB}MB`
 
 function AttachmentField({
   field,
@@ -55,7 +57,10 @@ function AttachmentField({
           onBlur={field.handleBlur}
         />
         <p id={hintId} className="text-xs text-white/60">
-          {attachmentHint}
+          {m.kyc_attachment_hint({
+            max: MAX_ATTACHMENTS,
+            size: MAX_ATTACHMENT_SIZE_MB,
+          })}
         </p>
         {error && <FieldError id={errorId}>{error}</FieldError>}
       </div>
@@ -84,7 +89,7 @@ function CompanyDocumentsForm() {
   })
 
   return (
-    <StepCard title="Personal information">
+    <StepCard title={m.kyc_company_title()}>
       <form
         noValidate
         className="flex flex-col items-stretch mt-5 gap-6"
@@ -95,7 +100,7 @@ function CompanyDocumentsForm() {
       >
         {documentFields.map(({ name, label }) => (
           <form.Field key={name} name={name}>
-            {(field) => <AttachmentField field={field} label={label} />}
+            {(field) => <AttachmentField field={field} label={label()} />}
           </form.Field>
         ))}
         <div className="grid grid-cols-2 gap-3">
@@ -104,14 +109,14 @@ function CompanyDocumentsForm() {
             onClick={() => navigate(-1)}
             className="cursor-pointer h-12 rounded-full bg-[#6E6E6E] text-base font-semibold text-white"
           >
-            Return
+            {m.kyc_return()}
           </button>
           <button
             type="submit"
             disabled={submitKyc.isPending}
             className="cursor-pointer h-12 rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-base font-semibold text-[#090E11] disabled:opacity-60"
           >
-            Submit
+            {m.kyc_submit()}
           </button>
         </div>
       </form>

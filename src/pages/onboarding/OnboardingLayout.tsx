@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
 import { PageTitle } from '@/components/common/PageTitle.tsx'
+import { m } from '@/paraglide/messages.js'
 import { LaunchStatusFilter } from './LaunchStatusFilter.tsx'
 import { OnboardingTabs, type OnboardingTab } from './OnboardingTabs.tsx'
 
@@ -9,7 +10,7 @@ export function OnboardingLayout() {
 
   return (
     <div className="px-3 py-6">
-      <PageTitle title="Registration Verification (KYC)" />
+      <PageTitle title={m.kyc_page_title()} />
       <OnboardingTabs value={tab} onChange={setTab} />
       <div
         id="onboarding-panel-profile"

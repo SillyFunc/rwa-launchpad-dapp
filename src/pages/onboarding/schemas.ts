@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { m } from '@/paraglide/messages.js'
 
 export const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 const MAX_IMAGE_SIZE_MB = 5
@@ -9,33 +10,44 @@ export const MAX_ATTACHMENT_SIZE_MB = 10
 
 const idPhotoSchema = z
   .file()
-  .mime(ACCEPTED_IMAGE_TYPES, 'Only JPG, PNG or WebP images are allowed')
-  .max(
-    MAX_IMAGE_SIZE_MB * 1024 * 1024,
-    `Image must be ${MAX_IMAGE_SIZE_MB} MB or smaller`,
-  )
+  .mime(ACCEPTED_IMAGE_TYPES, {
+    error: () => m.kyc_error_photo_type(),
+  })
+  .max(MAX_IMAGE_SIZE_MB * 1024 * 1024, {
+    error: () => m.kyc_error_photo_size({ size: MAX_IMAGE_SIZE_MB }),
+  })
   .nullable()
-  .refine((file) => file !== null, 'Please upload this photo')
+  .refine((file) => file !== null, {
+    error: () => m.kyc_error_photo_required(),
+  })
 
 // 文件规则写在数组层面，错误才会落到字段本身而不是 `field[0]` 这类子路径上
 const attachmentsSchema = z
   .array(z.file())
-  .min(1, 'Please upload at least one file')
-  .max(MAX_ATTACHMENTS, `Upload up to ${MAX_ATTACHMENTS} files`)
+  .min(1, { error: () => m.kyc_error_file_required() })
+  .max(MAX_ATTACHMENTS, {
+    error: () => m.kyc_error_file_max({ max: MAX_ATTACHMENTS }),
+  })
   .refine(
     (files) => files.every((file) => ATTACHMENT_TYPES.includes(file.type)),
-    'Only PDF, JPEG or PNG files are allowed',
+    { error: () => m.kyc_error_file_type() },
   )
   .refine(
     (files) =>
       files.every((file) => file.size <= MAX_ATTACHMENT_SIZE_MB * 1024 * 1024),
-    `Each file must be ${MAX_ATTACHMENT_SIZE_MB} MB or smaller`,
+    { error: () => m.kyc_error_file_size({ size: MAX_ATTACHMENT_SIZE_MB }) },
   )
 
 export const personalInfoSchema = z.object({
-  firstName: z.string().trim().min(1, 'Please enter your first name'),
-  lastName: z.string().trim().min(1, 'Please enter your last name'),
-  email: z.string().trim().pipe(z.email('Please enter a valid email')),
+  firstName: z.string().trim().min(1, {
+    error: () => m.kyc_error_first_name(),
+  }),
+  lastName: z.string().trim().min(1, {
+    error: () => m.kyc_error_last_name(),
+  }),
+  email: z.string().trim().pipe(
+    z.email({ error: () => m.kyc_error_email() }),
+  ),
   idPhotoFront: idPhotoSchema,
   idPhotoBack: idPhotoSchema,
 })
