@@ -39,7 +39,7 @@ export const sidebarNavigationGroups: SidebarNavigationItem[][] = [
       icon: onboardingIcon,
       to: '/onboarding',
     },
-    { id: 'launch', label: m.sidebar_nav_launch, icon: launchIcon },
+    { id: 'launch', label: m.sidebar_nav_launch, icon: launchIcon, to: '/launch' },
     { id: 'console', label: m.sidebar_nav_console, icon: consoleIcon },
   ],
   [
