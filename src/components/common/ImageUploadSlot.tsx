@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { X } from 'lucide-react'
-import iconPlusUrl from '@/assets/plus.svg?url'
+import { Camera, X } from 'lucide-react'
 
 type ImageUploadSlotProps = {
   id: string
@@ -52,7 +51,7 @@ export function ImageUploadSlot({
         aria-describedby={describedBy}
         onClick={() => inputRef.current?.click()}
         onBlur={onBlur}
-        className={`relative w-full overflow-hidden rounded-xl border border-dashed ${invalid ? 'border-[#FF0000]' : 'border-white/40'} bg-black/30 h-22.5 flex flex-col gap-2 items-center justify-center cursor-pointer`}
+        className={`relative w-full overflow-hidden rounded-xl border border-dashed text-white/40 hover:text-[#FCD438] ${invalid ? 'border-[#FF0000]' : 'border-white/40 hover:border-[#FCD438]'} bg-black/30 h-22.5 flex flex-col gap-2 items-center justify-center cursor-pointer`}
       >
         {previewUrl ? (
           <img
@@ -62,8 +61,8 @@ export function ImageUploadSlot({
           />
         ) : (
           <>
-            <img className="size-6" src={iconPlusUrl} alt="" />
-            <span className="text-white text-xs">Upload</span>
+            <Camera className="size-6" strokeWidth={1.5} />
+            <span className="text-xs">Upload</span>
           </>
         )}
       </button>
