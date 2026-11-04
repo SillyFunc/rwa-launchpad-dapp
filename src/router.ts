@@ -5,6 +5,7 @@ import { OnboardingLayout } from '@/pages/onboarding/OnboardingLayout.tsx'
 import { PersonalInfoStep } from '@/pages/onboarding/PersonalInfoStep.tsx'
 import App from './App.tsx'
 import { LaunchPage } from './pages/LaunchPage.tsx'
+import { ProjectListPage } from './pages/ProjectListPage.tsx'
 
 export type RouteHandle = {
   hideFooter?: boolean
@@ -17,6 +18,7 @@ export const router = createHashRouter([
     children: [
       { index: true, Component: HomePage },
       { path: 'launch', Component: LaunchPage },
+      { path: 'projectList', Component: ProjectListPage },
       {
         path: 'onboarding',
         Component: OnboardingLayout,
