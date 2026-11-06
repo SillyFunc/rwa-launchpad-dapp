@@ -1,27 +1,29 @@
-import { shortenAddress } from '@/utils/format.ts'
 import { ConnectKitButton } from 'connectkit'
 import { Wallet } from 'lucide-react'
+import { m } from '@/paraglide/messages.js'
+import { shortenAddress } from '@/utils/format.ts'
 
 export function WalletButton() {
   return (
     <ConnectKitButton.Custom>
       {({ isConnected, show, address }) => {
         if (!isConnected) {
+          const label = m.wallet_connect()
           return (
             <button
-              aria-label="连接钱包"
+              aria-label={label}
               type="button"
               onClick={show}
               className="flex justify-center items-center gap-1 rounded-lg h-6 border border-[#fcd438] px-2.5 text-xs font-medium text-[#fcd438] cursor-pointer focus-visible:outline-none transition-transform active:translate-y-0.5"
             >
-              <span className="leading-none min-w-0 truncate">连接钱包</span>
+              <span className="leading-none min-w-0 truncate">{label}</span>
             </button>
           )
         } else {
           return (
             <button
               type="button"
-              aria-label="打开钱包"
+              aria-label={m.wallet_open()}
               onClick={show}
               className="flex justify-center items-center gap-1 rounded-lg h-6 border border-[#fcd438] px-2.5 text-xs font-medium text-[#fcd438] cursor-pointer focus-visible:outline-none transition-transform active:translate-y-0.5"
             >
