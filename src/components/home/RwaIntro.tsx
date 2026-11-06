@@ -60,8 +60,8 @@ export function RwaIntro() {
             to="/onboarding"
             className="relative bg-linear-to-r from-[#FEFE00] to-[#CF4F00] mt-5 flex max-w-max px-6 h-10.75 items-center justify-center gap-1 rounded-full text-[#1a1a1a]"
           >
-            <MousePointer2 className="shrink-0 size-6 text-[#090E11]" />
-            <span className="text-base uppercase font-semibold min-w-0 text-[#090E11] leading-none">
+            <MousePointer2 className="shrink-0 size-5 text-[#090E11]" />
+            <span className="text-sm uppercase font-semibold min-w-0 text-[#090E11] leading-none">
               {m.home_cta_onboarding()}
             </span>
           </Link>
