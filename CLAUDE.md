@@ -15,8 +15,8 @@ RWA 资产发射平台（BSC）的前端 DApp。
 
 - `VITE_WALLETCONNECT_PROJECT_ID`：留空时不启用 WalletConnect，钱包列表只剩浏览器注入钱包（手机扫码、跳转钱包 App 不可用）；生产环境必须配置在 https://cloud.reown.com 申请的真实 projectId
 - `VITE_ENABLE_TESTNETS`：为 `true` 时加入 BSC 测试网
-- `VITE_BSC_RPC_URL`：BSC 主网自定义 RPC，优先于公共节点（`bsc-rpc.publicnode.com` 的 HTTP / WebSocket 作为回退）
-- `VITE_BSC_TESTNET_RPC_URL`：BSC 测试网自定义 RPC，留空使用链默认节点
+
+RPC 长期使用 publicnode 公共节点（主网与测试网均为 HTTP 优先、WebSocket 回退），地址以常量写在 `wagmi.ts` 中，不通过环境变量配置。
 
 ## 目录
 
