@@ -1,5 +1,6 @@
-import type { KeyboardEvent } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
+import type { KeyboardEvent } from 'react'
+
 import { m } from '@/paraglide/messages.js'
 
 const pillTransition = { type: 'spring' as const, duration: 0.4, bounce: 0 }
@@ -38,7 +39,10 @@ export function OnboardingTabs({
     })
   }
 
-  function onTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, id: OnboardingTab) {
+  function onTabKeyDown(
+    event: KeyboardEvent<HTMLButtonElement>,
+    id: OnboardingTab,
+  ) {
     const next = adjacentTab(id, event.key)
     if (!next || next === id) return
     event.preventDefault()

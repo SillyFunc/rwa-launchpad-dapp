@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
+
 import { PageTitle } from '@/components/common/PageTitle.tsx'
 import { m } from '@/paraglide/messages.js'
+
 import { LaunchStatusFilter } from './LaunchStatusFilter.tsx'
 import { OnboardingTabs, type OnboardingTab } from './OnboardingTabs.tsx'
 

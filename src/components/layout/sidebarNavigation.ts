@@ -1,14 +1,14 @@
-import { m } from '@/paraglide/messages.js'
-import homeIcon from '@/assets/navigation/home.svg'
-import productsIcon from '@/assets/navigation/products.svg'
-import onboardingIcon from '@/assets/navigation/onboarding.svg'
-import launchIcon from '@/assets/navigation/launch.svg'
-import consoleIcon from '@/assets/navigation/console.svg'
-import gameplayIcon from '@/assets/navigation/gameplay.svg'
 import announcementIcon from '@/assets/navigation/announcement.svg'
-import xIcon from '@/assets/navigation/x.svg'
-import telegramIcon from '@/assets/navigation/telegram.svg'
+import consoleIcon from '@/assets/navigation/console.svg'
 import emailIcon from '@/assets/navigation/email.svg'
+import gameplayIcon from '@/assets/navigation/gameplay.svg'
+import homeIcon from '@/assets/navigation/home.svg'
+import launchIcon from '@/assets/navigation/launch.svg'
+import onboardingIcon from '@/assets/navigation/onboarding.svg'
+import productsIcon from '@/assets/navigation/products.svg'
+import telegramIcon from '@/assets/navigation/telegram.svg'
+import xIcon from '@/assets/navigation/x.svg'
+import { m } from '@/paraglide/messages.js'
 
 export type SidebarNavigationItem = {
   id: string
@@ -39,7 +39,12 @@ export const sidebarNavigationGroups: SidebarNavigationItem[][] = [
       icon: onboardingIcon,
       to: '/onboarding',
     },
-    { id: 'launch', label: m.sidebar_nav_launch, icon: launchIcon, to: '/launch' },
+    {
+      id: 'launch',
+      label: m.sidebar_nav_launch,
+      icon: launchIcon,
+      to: '/launch',
+    },
     { id: 'console', label: m.sidebar_nav_console, icon: consoleIcon },
   ],
   [

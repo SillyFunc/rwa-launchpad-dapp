@@ -1,4 +1,5 @@
 import { z } from 'zod'
+
 import { m } from '@/paraglide/messages.js'
 
 export const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
@@ -39,15 +40,22 @@ const attachmentsSchema = z
   )
 
 export const personalInfoSchema = z.object({
-  firstName: z.string().trim().min(1, {
-    error: () => m.kyc_error_first_name(),
-  }),
-  lastName: z.string().trim().min(1, {
-    error: () => m.kyc_error_last_name(),
-  }),
-  email: z.string().trim().pipe(
-    z.email({ error: () => m.kyc_error_email() }),
-  ),
+  firstName: z
+    .string()
+    .trim()
+    .min(1, {
+      error: () => m.kyc_error_first_name(),
+    }),
+  lastName: z
+    .string()
+    .trim()
+    .min(1, {
+      error: () => m.kyc_error_last_name(),
+    }),
+  email: z
+    .string()
+    .trim()
+    .pipe(z.email({ error: () => m.kyc_error_email() })),
   idPhotoFront: idPhotoSchema,
   idPhotoBack: idPhotoSchema,
 })

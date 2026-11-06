@@ -1,16 +1,18 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router'
 import {
   revalidateLogic,
   useForm,
   type AnyFieldApi,
 } from '@tanstack/react-form'
+import { useState } from 'react'
+import { useNavigate } from 'react-router'
+
 import { ImageUploadSlot } from '@/components/common/ImageUploadSlot.tsx'
 import { FieldError } from '@/components/form/FieldError.tsx'
 import { FieldLabel } from '@/components/form/FieldLabel.tsx'
 import { TextField } from '@/components/form/TextField.tsx'
-import { getFieldError } from '@/utils/form.ts'
 import { m } from '@/paraglide/messages.js'
+import { getFieldError } from '@/utils/form.ts'
+
 import { useSavePersonalInfo } from './kycMutations.ts'
 import {
   ACCEPTED_IMAGE_TYPES,
@@ -62,7 +64,7 @@ export function PersonalInfoStep() {
     <StepCard title={m.kyc_personal_title()}>
       <form
         noValidate
-        className="flex flex-col items-stretch mt-5 gap-6"
+        className="mt-5 flex flex-col items-stretch gap-6"
         autoComplete="off"
         spellCheck={false}
         onSubmit={(event) => {
@@ -122,7 +124,7 @@ export function PersonalInfoStep() {
         <button
           type="submit"
           disabled={savePersonalInfo.isPending}
-          className="cursor-pointer w-full h-12 rounded-2xl bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-[#090E11] text-base font-semibold disabled:opacity-60 uppercase"
+          className="h-12 w-full cursor-pointer rounded-2xl bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-base font-semibold text-[#090E11] uppercase disabled:opacity-60"
         >
           {m.kyc_next()}
         </button>

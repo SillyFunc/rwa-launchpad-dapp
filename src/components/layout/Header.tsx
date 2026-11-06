@@ -1,10 +1,12 @@
-import { Link } from 'react-router'
 import { motion, useScroll, useTransform } from 'motion/react'
-import { WalletButton } from '@/components/common/WalletButton.tsx'
-import { useSidebarStore } from '@/stores/useSidebarStore.ts'
-import { Sidebar } from './Sidebar.tsx'
+import { Link } from 'react-router'
+
 import logoUrl from '@/assets/logo.svg?url'
 import menuUrl from '@/assets/menu.svg?url'
+import { WalletButton } from '@/components/common/WalletButton.tsx'
+import { useSidebarStore } from '@/stores/useSidebarStore.ts'
+
+import { Sidebar } from './Sidebar.tsx'
 
 export function Header() {
   const isSidebarOpen = useSidebarStore((state) => state.isOpen)
@@ -20,7 +22,7 @@ export function Header() {
   return (
     <motion.header
       style={{ borderBottomColor: borderColor }}
-      className="sticky top-0 z-40 flex items-center justify-between p-4 border-b"
+      className="sticky top-0 z-40 flex items-center justify-between border-b p-4"
     >
       <motion.div
         aria-hidden
@@ -34,14 +36,14 @@ export function Header() {
       >
         <span
           aria-hidden
-          className="block shrink-0 bg-current [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] mask-center mask-no-repeat mask-contain w-23 h-5.25"
+          className="block h-5.25 w-23 shrink-0 bg-current mask-contain mask-center mask-no-repeat [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain]"
           style={{
             WebkitMaskImage: `url("${logoUrl}")`,
             maskImage: `url("${logoUrl}")`,
           }}
         ></span>
       </Link>
-      <div className="flex items-center gap-2.5 shrink-0">
+      <div className="flex shrink-0 items-center gap-2.5">
         <WalletButton />
         <button
           type="button"
@@ -50,7 +52,7 @@ export function Header() {
           aria-controls="site-navigation"
           aria-expanded={isSidebarOpen}
           onClick={openSidebar}
-          className="size-6 flex cursor-pointer items-center justify-center rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-yellow-400 transition-transform active:translate-y-0.5"
+          className="flex size-6 cursor-pointer items-center justify-center rounded-sm transition-transform focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-yellow-400 active:translate-y-0.5"
         >
           <img
             src={menuUrl}

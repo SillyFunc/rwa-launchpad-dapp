@@ -1,7 +1,9 @@
-import { Link } from 'react-router'
 import { CircleCheck, MousePointer2 } from 'lucide-react'
+import { Link } from 'react-router'
+
 import heroVisual from '@/assets/home/hero-visual.png'
 import { m } from '@/paraglide/messages.js'
+
 import { RippleRings } from './RippleRings.tsx'
 import { SectionHeading } from './SectionHeading.tsx'
 
@@ -26,10 +28,10 @@ export function RwaIntro() {
       </SectionHeading>
       <section className="relative ps-3">
         <div className="relative mx-auto mt-6.5">
-          <h1 className="bg-linear-to-r from-white from-5% to-[#fcd900] bg-clip-text text-2xl font-bold text-transparent max-w-70">
+          <h1 className="max-w-70 bg-linear-to-r from-white from-5% to-[#fcd900] bg-clip-text text-2xl font-bold text-transparent">
             {m.home_rwa_headline()}
           </h1>
-          <p className="mt-3 text-sm font-normal min-w-0 max-w-60 text-[#A0A3A7]">
+          <p className="mt-3 max-w-60 min-w-0 text-sm font-normal text-[#A0A3A7]">
             {m.home_rwa_body()}
           </p>
           <div className="mt-3 flex">
@@ -46,7 +48,7 @@ export function RwaIntro() {
                   <li key={id} className="flex items-center gap-1">
                     <CircleCheck
                       strokeWidth={1.5}
-                      className="text-[#FCD438] size-3.75 shrink-0"
+                      className="size-3.75 shrink-0 text-[#FCD438]"
                     />
                     <span className="text-xs text-[#A0A3A7]/95">
                       {feature()}
@@ -58,10 +60,10 @@ export function RwaIntro() {
           </div>
           <Link
             to="/onboarding"
-            className="relative bg-linear-to-r from-[#FEFE00] to-[#CF4F00] mt-5 flex max-w-max px-6 h-10.75 items-center justify-center gap-1 rounded-full text-[#1a1a1a]"
+            className="relative mt-5 flex h-10.75 max-w-max items-center justify-center gap-1 rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] px-6 text-[#1a1a1a]"
           >
-            <MousePointer2 className="shrink-0 size-5 text-[#090E11]" />
-            <span className="text-sm uppercase font-semibold min-w-0 text-[#090E11] leading-none">
+            <MousePointer2 className="size-5 shrink-0 text-[#090E11]" />
+            <span className="min-w-0 text-sm leading-none font-semibold text-[#090E11] uppercase">
               {m.home_cta_onboarding()}
             </span>
           </Link>

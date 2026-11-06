@@ -1,9 +1,11 @@
-import { useEffect, useId, useRef, useState } from 'react'
 import { Play } from 'lucide-react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
+import { useEffect, useId, useRef, useState } from 'react'
+
 import rwaAssetsBanner from '@/assets/home/banner-rwa-assets.webp'
 import realEstateBanner from '@/assets/home/banner-rwa-real-estate.webp'
 import { m } from '@/paraglide/messages.js'
+
 import { NoticeMarquee } from './NoticeMarquee.tsx'
 
 const BANNER_INTERVAL = 5000
@@ -48,7 +50,7 @@ export function HeroBanner() {
 
   return (
     <div className="relative">
-      <div className="relative pt-4 px-3">
+      <div className="relative px-3 pt-4">
         <div
           ref={carouselRef}
           role="region"
@@ -97,7 +99,7 @@ export function HeroBanner() {
           <div
             role="group"
             aria-label={m.home_banner_controls_label()}
-            className="flex h-2 items-center justify-center gap-1.25 absolute bottom-2 left-1/2 -translate-x-1/2"
+            className="absolute bottom-2 left-1/2 flex h-2 -translate-x-1/2 items-center justify-center gap-1.25"
           >
             {banners.map((banner, index) => (
               <button
@@ -109,7 +111,7 @@ export function HeroBanner() {
                 })}
                 aria-current={index === activeIndex ? 'true' : undefined}
                 onClick={() => setActiveIndex(index)}
-                className="grid place-items-center transition-colors h-2 w-2"
+                className="grid h-2 w-2 place-items-center transition-colors"
               >
                 <span
                   aria-hidden="true"
@@ -155,13 +157,13 @@ export function HeroBanner() {
       </div>
 
       <div className="relative mx-auto mt-8 flex items-center gap-x-2.5 px-1">
-        <div className="flex flex-col w-full h-20 items-center justify-center gap-1.5 rounded-2xl border-[0.5px] border-[#484B51] bg-[rgba(29,29,29,0.4)]">
+        <div className="flex h-20 w-full flex-col items-center justify-center gap-1.5 rounded-2xl border-[0.5px] border-[#484B51] bg-[rgba(29,29,29,0.4)]">
           <span className="text-lg font-semibold opacity-80">+$300M</span>
           <span className="max-w-25 text-center text-xs text-[#A0A3A7]">
             {m.home_stat_tokenized_value()}
           </span>
         </div>
-        <div className="gradient-border flex flex-col w-32.5 shrink-0 h-24 items-center justify-center gap-1.5 rounded-2xl bg-[rgba(29,29,29,0.4)]">
+        <div className="gradient-border flex h-24 w-32.5 shrink-0 flex-col items-center justify-center gap-1.5 rounded-2xl bg-[rgba(29,29,29,0.4)]">
           <span className="bg-linear-to-r from-[#fefe00] to-[#cf4f00] bg-clip-text text-xl font-semibold text-transparent">
             +$300M
           </span>
@@ -169,7 +171,7 @@ export function HeroBanner() {
             {m.home_stat_tvl()}
           </span>
         </div>
-        <div className="flex flex-col w-full h-20 items-center justify-center gap-1.5 rounded-2xl border-[0.5px] border-[#484B51] bg-[rgba(29,29,29,0.4)]">
+        <div className="flex h-20 w-full flex-col items-center justify-center gap-1.5 rounded-2xl border-[0.5px] border-[#484B51] bg-[rgba(29,29,29,0.4)]">
           <span className="text-lg font-semibold opacity-80">16+</span>
           <span className="max-w-25 text-center text-xs text-[#A0A3A7]">
             {m.home_stat_markets()}

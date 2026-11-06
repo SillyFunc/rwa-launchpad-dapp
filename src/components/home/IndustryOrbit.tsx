@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import {
   animate,
   motion,
@@ -8,16 +7,22 @@ import {
   useTransform,
   type MotionValue,
 } from 'motion/react'
-import industryNode from '@/assets/home/industry-node.svg'
+import { useEffect, useRef } from 'react'
+
 import industryIcon1 from '@/assets/home/industry-icon-1.svg'
 import industryIcon2 from '@/assets/home/industry-icon-2.svg'
 import industryIcon3 from '@/assets/home/industry-icon-3.svg'
 import industryIcon4 from '@/assets/home/industry-icon-4.svg'
 import industryIcon5 from '@/assets/home/industry-icon-5.svg'
+import industryNode from '@/assets/home/industry-node.svg'
 import { m } from '@/paraglide/messages.js'
 
 const industries = [
-  { id: 'real-estate', label: m.home_industry_real_estate, icon: industryIcon1 },
+  {
+    id: 'real-estate',
+    label: m.home_industry_real_estate,
+    icon: industryIcon1,
+  },
   { id: 'finance', label: m.home_industry_finance, icon: industryIcon2 },
   { id: 'web3', label: m.home_industry_web3, icon: industryIcon3 },
   { id: 'venture', label: m.home_industry_venture, icon: industryIcon4 },

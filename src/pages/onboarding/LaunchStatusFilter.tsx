@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
+import { useRef, useState } from 'react'
+
 import { m } from '@/paraglide/messages.js'
 
 const filters = [
@@ -21,7 +22,8 @@ export function LaunchStatusFilter() {
     setValue(next)
     const container = scrollerRef.current
     if (!container) return
-    const left = button.offsetLeft - (container.clientWidth - button.offsetWidth) / 2
+    const left =
+      button.offsetLeft - (container.clientWidth - button.offsetWidth) / 2
     container.scrollTo({
       left: Math.max(0, left),
       behavior: shouldReduceMotion ? 'auto' : 'smooth',
@@ -33,7 +35,7 @@ export function LaunchStatusFilter() {
       ref={scrollerRef}
       role="radiogroup"
       aria-label={m.onboarding_launch_filter_label()}
-      className="mt-5 flex gap-2.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      className="mt-5 flex [scrollbar-width:none] gap-2.5 overflow-x-auto [&::-webkit-scrollbar]:hidden"
     >
       {filters.map((filter) => {
         const selected = filter.id === value
@@ -44,7 +46,7 @@ export function LaunchStatusFilter() {
             role="radio"
             aria-checked={selected}
             onClick={(event) => select(filter.id, event.currentTarget)}
-            className={`h-8 shrink-0 cursor-pointer whitespace-nowrap rounded-full px-4 text-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 ${
+            className={`h-8 shrink-0 cursor-pointer rounded-full px-4 text-xs whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 ${
               selected
                 ? 'gradient-border bg-linear-to-r from-[#FEFE00]/10 to-[#CF4F00]/10'
                 : 'bg-[#1D1D1D] text-white'

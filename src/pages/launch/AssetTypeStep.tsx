@@ -1,20 +1,18 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router'
 import { revalidateLogic, useForm } from '@tanstack/react-form'
 import { ChevronRight } from 'lucide-react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import { Button } from 'tdesign-mobile-react'
+
 import debtIcon from '@/assets/launch/debt.svg'
 import equityIcon from '@/assets/launch/equity.svg'
 import incomeIcon from '@/assets/launch/income.svg'
 import realEstateIcon from '@/assets/launch/real-estate.svg'
 import { m } from '@/paraglide/messages.js'
-import { LaunchStepShell } from './LaunchStepShell.tsx'
+
 import { useSaveAssetType } from './launchMutations.ts'
-import {
-  emptyAssetType,
-  assetTypeSchema,
-  type AssetType,
-} from './schemas.ts'
+import { LaunchStepShell } from './LaunchStepShell.tsx'
+import { emptyAssetType, assetTypeSchema, type AssetType } from './schemas.ts'
 import { useLaunchDraftStore } from './useLaunchDraftStore.ts'
 
 const options: {
@@ -67,10 +65,7 @@ export function AssetTypeStep() {
   })
 
   return (
-    <LaunchStepShell
-      title={m.launch_heading()}
-      description={m.launch_body()}
-    >
+    <LaunchStepShell title={m.launch_heading()} description={m.launch_body()}>
       <form
         noValidate
         className="mt-5 flex w-full min-w-0 flex-col"

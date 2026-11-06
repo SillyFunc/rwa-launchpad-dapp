@@ -8,8 +8,8 @@ export function StepCard({
   children: ReactNode
 }) {
   return (
-    <section className="bg-[#1a1a1a] p-4 rounded-2xl mt-5 flex flex-col">
-      <h2 className="max-w-max bg-clip-text text-transparent text-xl font-semibold bg-linear-to-r from-[#EEEEEE] to-[#FFC615]">
+    <section className="mt-5 flex flex-col rounded-2xl bg-[#1a1a1a] p-4">
+      <h2 className="max-w-max bg-linear-to-r from-[#EEEEEE] to-[#FFC615] bg-clip-text text-xl font-semibold text-transparent">
         {title}
       </h2>
       {children}

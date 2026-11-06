@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router'
+
 import { PageTitle } from '@/components/common/PageTitle.tsx'
 import { m } from '@/paraglide/messages.js'
 

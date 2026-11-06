@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router'
+
 import rwaAssetsBanner from '@/assets/home/banner-rwa-assets.webp'
 import { m } from '@/paraglide/messages.js'
 
@@ -7,7 +8,7 @@ export function ProjectListPage() {
 
   return (
     <div className="px-3 py-6">
-      <div className="rounded-3xl border border-[#FCD438] p-3 bg-[#1D1D1D]">
+      <div className="rounded-3xl border border-[#FCD438] bg-[#1D1D1D] p-3">
         <div className="mb-3">
           <div className="relative h-71.25 w-full overflow-hidden rounded-2xl">
             <img
@@ -31,14 +32,14 @@ export function ProjectListPage() {
           </div>
         </div>
         <div className="mb-3.75">
-          <h2 className="font-bold text-2xl uppercase max-w-max bg-clip-text bg-linear-[100deg] from-white to-[#FCD900] text-transparent leading-none mb-2.5">
+          <h2 className="mb-2.5 max-w-max bg-linear-[100deg] from-white to-[#FCD900] bg-clip-text text-2xl leading-none font-bold text-transparent uppercase">
             ETH-ETF
           </h2>
-          <p className="text-[#A0A3A7] text-xs leading-relaxed mb-3 wrap-break-word">
+          <p className="mb-3 text-xs leading-relaxed wrap-break-word text-[#A0A3A7]">
             {m.project_total_pool_amount()}
           </p>
           <div className="mb-2.5 flex flex-col">
-            <div className="flex items-center justify-between text-base text-white font-semibold tabular-nums">
+            <div className="flex items-center justify-between text-base font-semibold text-white tabular-nums">
               <span className="min-w-0 truncate">560000 3W</span>
               <span className="min-w-0 truncate">30%</span>
             </div>
@@ -55,12 +56,12 @@ export function ProjectListPage() {
             </div>
           </div>
         </div>
-        <div className="bg-linear-to-r from-[#FCCC1F]/10 to-[#EFBA09]/10 p-1 rounded-full">
+        <div className="rounded-full bg-linear-to-r from-[#FCCC1F]/10 to-[#EFBA09]/10 p-1">
           <button
             type="button"
             aria-label={m.project_see_more_aria()}
             onClick={() => navigate('/projectDetail')}
-            className="w-full h-10 uppercase text-base font-semibold text-[#090E11] rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] cursor-pointer"
+            className="h-10 w-full cursor-pointer rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-base font-semibold text-[#090E11] uppercase"
           >
             {m.project_see_more()}
           </button>

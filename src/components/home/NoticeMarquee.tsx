@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import {
   animate,
   motion,
@@ -6,6 +5,7 @@ import {
   useMotionValue,
   useReducedMotion,
 } from 'motion/react'
+import { useEffect, useRef } from 'react'
 
 const SPEED = 40
 const START_DELAY = 1.5

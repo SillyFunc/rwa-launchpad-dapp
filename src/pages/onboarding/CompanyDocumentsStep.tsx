@@ -1,11 +1,17 @@
+import {
+  revalidateLogic,
+  useForm,
+  type AnyFieldApi,
+} from '@tanstack/react-form'
 import { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router'
-import { revalidateLogic, useForm, type AnyFieldApi } from '@tanstack/react-form'
+
 import { AttachmentUpload } from '@/components/form/AttachmentUpload.tsx'
 import { FieldError } from '@/components/form/FieldError.tsx'
 import { FieldLabel } from '@/components/form/FieldLabel.tsx'
-import { getFieldError } from '@/utils/form.ts'
 import { m } from '@/paraglide/messages.js'
+import { getFieldError } from '@/utils/form.ts'
+
 import { useSubmitKyc } from './kycMutations.ts'
 import {
   ATTACHMENT_TYPES,
@@ -92,7 +98,7 @@ function CompanyDocumentsForm() {
     <StepCard title={m.kyc_company_title()}>
       <form
         noValidate
-        className="flex flex-col items-stretch mt-5 gap-6"
+        className="mt-5 flex flex-col items-stretch gap-6"
         onSubmit={(event) => {
           event.preventDefault()
           void form.handleSubmit()
@@ -107,14 +113,14 @@ function CompanyDocumentsForm() {
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="cursor-pointer h-12 rounded-full bg-[#6E6E6E] text-base font-semibold text-white"
+            className="h-12 cursor-pointer rounded-full bg-[#6E6E6E] text-base font-semibold text-white"
           >
             {m.kyc_return()}
           </button>
           <button
             type="submit"
             disabled={submitKyc.isPending}
-            className="cursor-pointer h-12 rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-base font-semibold text-[#090E11] disabled:opacity-60"
+            className="h-12 cursor-pointer rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-base font-semibold text-[#090E11] disabled:opacity-60"
           >
             {m.kyc_submit()}
           </button>

@@ -1,8 +1,10 @@
 import { Outlet, ScrollRestoration, useMatches } from 'react-router'
-import type { RouteHandle } from './router.ts'
+
+import goldBackground from '@/assets/home/bg-gold-top.webp'
 import { Footer } from '@/components/layout/Footer.tsx'
 import { Header } from '@/components/layout/Header.tsx'
-import goldBackground from '@/assets/home/bg-gold-top.webp'
+
+import type { RouteHandle } from './router.ts'
 
 function App() {
   const hideFooter = useMatches().some(
@@ -10,7 +12,7 @@ function App() {
   )
 
   return (
-    <div className="relative isolate flex min-h-svh w-full sm:max-w-sm sm:mx-auto flex-col bg-[#070808]">
+    <div className="relative isolate flex min-h-svh w-full flex-col bg-[#070808] sm:mx-auto sm:max-w-sm">
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-50 mx-auto w-full sm:max-w-sm"

@@ -1,5 +1,6 @@
 import industryCore from '@/assets/home/industry-core.png'
 import { m } from '@/paraglide/messages.js'
+
 import { IndustryOrbit } from './IndustryOrbit.tsx'
 import { RippleRings } from './RippleRings.tsx'
 import { SectionHeading } from './SectionHeading.tsx'

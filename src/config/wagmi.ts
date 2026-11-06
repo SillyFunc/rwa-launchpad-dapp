@@ -1,5 +1,5 @@
-import { bsc, bscTestnet } from 'wagmi/chains'
 import { createConfig, fallback, http, injected, webSocket } from 'wagmi'
+import { bsc, bscTestnet } from 'wagmi/chains'
 import { walletConnect } from 'wagmi/connectors'
 
 const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID

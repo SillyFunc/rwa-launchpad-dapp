@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import {
   animate,
   motion,
@@ -8,6 +7,7 @@ import {
   useTransform,
   type MotionValue,
 } from 'motion/react'
+import { useEffect, useRef } from 'react'
 
 const RING_GAP = 20
 const RIPPLE_DURATION = 1.6

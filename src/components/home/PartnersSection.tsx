@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import {
   animate,
   motion,
@@ -6,8 +5,7 @@ import {
   useMotionValue,
   useReducedMotion,
 } from 'motion/react'
-import { m } from '@/paraglide/messages.js'
-import { SectionHeading } from './SectionHeading.tsx'
+import { useEffect, useRef } from 'react'
 
 import logo227 from '@/assets/home/partners/logo-227.png'
 import logo228 from '@/assets/home/partners/logo-228.png'
@@ -28,6 +26,9 @@ import logo243 from '@/assets/home/partners/logo-243.png'
 import logo244 from '@/assets/home/partners/logo-244.png'
 import logo245 from '@/assets/home/partners/logo-245.png'
 import logo246 from '@/assets/home/partners/logo-246.png'
+import { m } from '@/paraglide/messages.js'
+
+import { SectionHeading } from './SectionHeading.tsx'
 
 const SCROLL_SPEED = 30
 

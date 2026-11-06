@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
 import { Camera, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+
 import { m } from '@/paraglide/messages.js'
 
 type ImageUploadSlotProps = {
@@ -52,7 +53,7 @@ export function ImageUploadSlot({
         aria-describedby={describedBy}
         onClick={() => inputRef.current?.click()}
         onBlur={onBlur}
-        className={`relative w-full overflow-hidden rounded-xl border border-dashed text-white/40 hover:text-[#FCD438] ${invalid ? 'border-[#FF0000]' : 'border-white/40 hover:border-[#FCD438]'} bg-black/30 h-22.5 flex flex-col gap-2 items-center justify-center cursor-pointer`}
+        className={`relative w-full overflow-hidden rounded-xl border border-dashed text-white/40 hover:text-[#FCD438] ${invalid ? 'border-[#FF0000]' : 'border-white/40 hover:border-[#FCD438]'} flex h-22.5 cursor-pointer flex-col items-center justify-center gap-2 bg-black/30`}
       >
         {previewUrl ? (
           <img
@@ -75,7 +76,7 @@ export function ImageUploadSlot({
             onChange(null)
             triggerRef.current?.focus()
           }}
-          className="absolute top-1.5 right-1.5 flex size-6 items-center justify-center rounded-full bg-black/60 text-white cursor-pointer"
+          className="absolute top-1.5 right-1.5 flex size-6 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white"
         >
           <X aria-hidden className="size-4" />
         </button>

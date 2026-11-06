@@ -1,7 +1,8 @@
-import { useRef } from 'react'
 import { CirclePlus, FileText, X } from 'lucide-react'
-import { formatFileSize } from '@/utils/format.ts'
+import { useRef } from 'react'
+
 import { m } from '@/paraglide/messages.js'
+import { formatFileSize } from '@/utils/format.ts'
 
 type AttachmentUploadProps = {
   id: string
@@ -45,7 +46,7 @@ export function AttachmentUpload({
           if (!isFull) inputRef.current?.click()
         }}
         onBlur={onBlur}
-        className={`flex h-10.5 w-full items-center justify-center gap-2 rounded-xl border border-dashed ${invalid ? 'border-[#FF0000]' : 'border-white/40'} bg-black/30 text-base font-semibold text-[#FCD438] cursor-pointer aria-disabled:cursor-not-allowed aria-disabled:opacity-40`}
+        className={`flex h-10.5 w-full items-center justify-center gap-2 rounded-xl border border-dashed ${invalid ? 'border-[#FF0000]' : 'border-white/40'} cursor-pointer bg-black/30 text-base font-semibold text-[#FCD438] aria-disabled:cursor-not-allowed aria-disabled:opacity-40`}
       >
         <CirclePlus aria-hidden className="size-5" strokeWidth={1.5} />
         {m.attachments()}
@@ -55,7 +56,7 @@ export function AttachmentUpload({
           {files.map((file, index) => (
             <li
               key={`${index}-${file.name}-${file.lastModified}`}
-              className="flex h-10 items-center gap-2 rounded-xl bg-black/30 pl-3 pr-1 text-sm"
+              className="flex h-10 items-center gap-2 rounded-xl bg-black/30 pr-1 pl-3 text-sm"
             >
               <FileText aria-hidden className="size-4 shrink-0 text-white/60" />
               <span className="min-w-0 flex-1 truncate">{file.name}</span>
@@ -69,7 +70,7 @@ export function AttachmentUpload({
                   onChange(files.filter((_, i) => i !== index))
                   triggerRef.current?.focus()
                 }}
-                className="flex size-8 shrink-0 items-center justify-center rounded-full text-white/60 cursor-pointer"
+                className="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full text-white/60"
               >
                 <X aria-hidden className="size-4" />
               </button>

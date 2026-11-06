@@ -3,6 +3,7 @@ import customerIcon from '@/assets/home/icon-customer.svg'
 import infraIcon from '@/assets/home/icon-infra.svg'
 import paymentIcon from '@/assets/home/icon-payment.svg'
 import { m } from '@/paraglide/messages.js'
+
 import { SectionHeading } from './SectionHeading.tsx'
 
 const solutions = [

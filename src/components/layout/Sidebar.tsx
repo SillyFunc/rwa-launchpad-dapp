@@ -1,13 +1,15 @@
+import { useReducedMotion } from 'motion/react'
 import { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router'
-import { useReducedMotion } from 'motion/react'
 import { Popup } from 'tdesign-mobile-react'
-import { LanguageSwitcher } from '@/components/common/LanguageSwitcher.tsx'
-import { m } from '@/paraglide/messages.js'
-import { useSidebarStore } from '@/stores/useSidebarStore.ts'
+
 import logoUrl from '@/assets/logo.svg'
 import closeIcon from '@/assets/navigation/close.svg'
 import socialCircle from '@/assets/navigation/social-circle.svg'
+import { LanguageSwitcher } from '@/components/common/LanguageSwitcher.tsx'
+import { m } from '@/paraglide/messages.js'
+import { useSidebarStore } from '@/stores/useSidebarStore.ts'
+
 import {
   sidebarNavigationGroups,
   sidebarSocialLinks,
@@ -95,7 +97,7 @@ export function Sidebar() {
       onOpened={() => closeButtonRef.current?.focus({ preventScroll: true })}
       className="pointer-events-none w-full [--td-popup-bg-color:transparent]"
     >
-      <div className="mx-auto flex h-full w-full sm:max-w-sm flex-col px-4 pt-24">
+      <div className="mx-auto flex h-full w-full flex-col px-4 pt-24 sm:max-w-sm">
         <section
           id="site-navigation"
           role="dialog"

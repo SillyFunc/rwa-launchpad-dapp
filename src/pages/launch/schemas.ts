@@ -1,11 +1,6 @@
 import { z } from 'zod'
 
-export const assetTypes = [
-  'real-estate',
-  'equity',
-  'debt',
-  'income',
-] as const
+export const assetTypes = ['real-estate', 'equity', 'debt', 'income'] as const
 
 export type AssetType = (typeof assetTypes)[number]
 

@@ -47,7 +47,7 @@ const linkGroups = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden rounded-t-4xl border-t border-[#484B51] pt-8 pb-11 bg-[#070808]">
+    <footer className="relative overflow-hidden rounded-t-4xl border-t border-[#484B51] bg-[#070808] pt-8 pb-11">
       <img
         src={footerBg}
         alt=""

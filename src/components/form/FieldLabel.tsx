@@ -15,7 +15,7 @@ export function FieldLabel({
       id={id}
       className="text-base font-semibold text-white"
     >
-      <span aria-hidden className="text-[#FF0000] mr-1">
+      <span aria-hidden className="mr-1 text-[#FF0000]">
         *
       </span>
       {children}

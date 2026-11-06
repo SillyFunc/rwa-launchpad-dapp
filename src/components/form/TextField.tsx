@@ -1,5 +1,7 @@
 import type { AnyFieldApi } from '@tanstack/react-form'
+
 import { getFieldError } from '@/utils/form.ts'
+
 import { FieldError } from './FieldError.tsx'
 import { FieldLabel } from './FieldLabel.tsx'
 
@@ -32,7 +34,7 @@ export function TextField({
           onBlur={field.handleBlur}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
-          className={`bg-black/10 rounded-xl border ${error ? 'border-[#FF0000]' : 'border-white/40'} h-10.5 px-4 text-sm placeholder:text-white/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400`}
+          className={`rounded-xl border bg-black/10 ${error ? 'border-[#FF0000]' : 'border-white/40'} h-10.5 px-4 text-sm placeholder:text-white/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400`}
         />
         {error && <FieldError id={errorId}>{error}</FieldError>}
       </div>

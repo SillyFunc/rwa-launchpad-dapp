@@ -1,14 +1,16 @@
 import { createHashRouter } from 'react-router'
+
 import { HomePage } from '@/pages/HomePage.tsx'
-import { CompanyDocumentsStep } from '@/pages/onboarding/CompanyDocumentsStep.tsx'
-import { OnboardingLayout } from '@/pages/onboarding/OnboardingLayout.tsx'
-import { PersonalInfoStep } from '@/pages/onboarding/PersonalInfoStep.tsx'
-import App from './App.tsx'
 import { AssetDescriptionStep } from '@/pages/launch/AssetDescriptionStep.tsx'
 import { AssetTypeStep } from '@/pages/launch/AssetTypeStep.tsx'
 import { LaunchLayout } from '@/pages/launch/LaunchLayout.tsx'
-import { ProjectListPage } from '@/pages/ProjectListPage.tsx'
+import { CompanyDocumentsStep } from '@/pages/onboarding/CompanyDocumentsStep.tsx'
+import { OnboardingLayout } from '@/pages/onboarding/OnboardingLayout.tsx'
+import { PersonalInfoStep } from '@/pages/onboarding/PersonalInfoStep.tsx'
 import { ProjectDetailPage } from '@/pages/ProjectDetailPage.tsx'
+import { ProjectListPage } from '@/pages/ProjectListPage.tsx'
+
+import App from './App.tsx'
 
 export type RouteHandle = {
   hideFooter?: boolean
