@@ -1,4 +1,19 @@
-export const ProjectDetailPage = () => {
+import { m } from '@/paraglide/messages.js'
+
+const saleDetails: { label: () => string; value: string }[] = [
+  { label: m.project_price_per_token, value: '0.0017 USDC' },
+  { label: m.project_private_sale_allocation, value: '56,000,000 $STRD' },
+  { label: m.project_total_raise, value: '95,200 USDC' },
+  { label: m.project_total_supply, value: '100,000,000 $STRD' },
+  { label: m.project_vesting_info, value: '10% TGE, 2M Cliff, 10M Vesting' },
+  { label: m.project_sale_start, value: '2025-08-20 18:00' },
+  { label: m.project_sale_end, value: '2025-08-20 18:00' },
+  { label: m.project_allowed_tiers, value: 'Gold, Platinum, Diamond' },
+  { label: m.project_min_investment, value: '100.00 USDC' },
+  { label: m.project_token_generation, value: 'TBD' },
+]
+
+export function ProjectDetailPage() {
   return (
     <div className="px-3 py-5">
       <div className="border border-[#FCD438] rounded-3xl p-3 bg-linear-[40deg] from-[#4A5F73]/40 to-[#24313F]/40">
@@ -21,80 +36,25 @@ export const ProjectDetailPage = () => {
           </p>
           <div className="flex gap-2.5"></div>
         </div>
-        <div className="bg-[#212018] p-3 rounded-3xl mb-4 divide-y divide-[#D8D8D8]/40">
-          <div className="flex items-center justify-between text-xs pb-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">
-              Price per token
-            </span>
-            <span className="min-w-0 truncate text-white">0.0017 USDC</span>
-          </div>
-          <div className="flex items-center justify-between text-xs py-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">
-              Private Sale Allocation
-            </span>
-            <span className="min-w-0 truncate text-white">
-              56,000,000 $STRD
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-xs py-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">Total raise</span>
-            <span className="min-w-0 truncate text-white">95,200 USDC</span>
-          </div>
-          <div className="flex items-center justify-between text-xs py-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">
-              Total Supply
-            </span>
-            <span className="min-w-0 truncate text-white">
-              100,000,000 $STRD
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-xs py-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">
-              Vesting information
-            </span>
-            <span className="min-w-0 truncate text-white">
-              10% TGE, 2M Cliff, 10M Vesting
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-xs py-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">Sale Start</span>
-            <span className="min-w-0 truncate text-white">
-              2025-08-20 18:00
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-xs py-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">Sale End</span>
-            <span className="min-w-0 truncate text-white">
-              2025-08-20 18:00
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-xs py-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">
-              Allowed tiers
-            </span>
-            <span className="min-w-0 truncate text-white">
-              Gole,Platinum,Diamond
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-xs py-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">
-              Mini investment
-            </span>
-            <span className="min-w-0 truncate text-white">100.00 USDC</span>
-          </div>
-          <div className="flex items-center justify-between text-xs pt-2.5">
-            <span className="min-w-0 truncate text-[#A0A3A7]">
-              Token Generation
-            </span>
-            <span className="min-w-0 truncate text-white">TBD</span>
-          </div>
-        </div>
+        <dl className="bg-[#212018] p-3 rounded-3xl mb-4 divide-y divide-[#D8D8D8]/40">
+          {saleDetails.map(({ label, value }) => (
+            <div
+              key={label()}
+              className="flex items-center justify-between text-xs py-2.5 first:pt-0 last:pb-0"
+            >
+              <dt className="min-w-0 truncate text-[#A0A3A7]">{label()}</dt>
+              <dd className="min-w-0 truncate text-white tabular-nums">
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
         <button
           type="button"
           className="uppercase rounded-full h-10.75 bg-linear-to-r from-[#FEFE00] to-[#CF4F00] w-full cursor-pointer"
         >
           <span className="text-base text-[#090E11] font-semibold min-w-0 truncate">
-            Casting
+            {m.project_mint()}
           </span>
         </button>
       </div>

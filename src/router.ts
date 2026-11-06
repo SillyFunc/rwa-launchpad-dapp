@@ -7,8 +7,8 @@ import App from './App.tsx'
 import { AssetDescriptionStep } from '@/pages/launch/AssetDescriptionStep.tsx'
 import { AssetTypeStep } from '@/pages/launch/AssetTypeStep.tsx'
 import { LaunchLayout } from '@/pages/launch/LaunchLayout.tsx'
-import { ProjectListPage } from './pages/ProjectListPage.tsx'
-import { ProjectDetailPage } from './pages/ProjectDetailPage.tsx'
+import { ProjectListPage } from '@/pages/ProjectListPage.tsx'
+import { ProjectDetailPage } from '@/pages/ProjectDetailPage.tsx'
 
 export type RouteHandle = {
   hideFooter?: boolean

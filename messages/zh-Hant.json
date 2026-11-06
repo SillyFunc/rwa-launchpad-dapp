@@ -129,5 +129,19 @@
   "project_start_in": "開始時間",
   "project_end_in": "結束時間",
   "project_see_more": "查看詳情",
-  "project_see_more_aria": "查看詳情"
+  "project_see_more_aria": "查看詳情",
+  "project_tag_private_round": "私募輪",
+  "project_tag_live": "進行中",
+  "project_total_pool_amount": "資金池總額",
+  "project_price_per_token": "代幣單價",
+  "project_private_sale_allocation": "私募分配額度",
+  "project_total_raise": "募資總額",
+  "project_total_supply": "總供應量",
+  "project_vesting_info": "解鎖資訊",
+  "project_sale_start": "開售時間",
+  "project_sale_end": "截止時間",
+  "project_allowed_tiers": "可參與等級",
+  "project_min_investment": "最低投資額",
+  "project_token_generation": "代幣生成",
+  "project_mint": "鑄造"
 }

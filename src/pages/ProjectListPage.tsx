@@ -1,11 +1,12 @@
+import { useNavigate } from 'react-router'
 import rwaAssetsBanner from '@/assets/home/banner-rwa-assets.webp'
 import { m } from '@/paraglide/messages.js'
-import { useNavigate } from 'react-router'
 
-export const ProjectListPage = () => {
-  const nav = useNavigate()
+export function ProjectListPage() {
+  const navigate = useNavigate()
+
   return (
-    <div className="px-3 py-6" onClick={() => nav('/projectDetail')}>
+    <div className="px-3 py-6">
       <div className="rounded-3xl border border-[#FCD438] p-3 bg-[#1D1D1D]">
         <div className="mb-3">
           <div className="relative h-71.25 w-full overflow-hidden rounded-2xl">
@@ -18,10 +19,10 @@ export const ProjectListPage = () => {
             />
             <div className="absolute inset-x-5 top-0 flex gap-1.5 text-xs">
               <span className="rounded-br-sm rounded-bl-sm bg-white px-1.5 py-0.75 text-[#FB8B0F]">
-                Private Round
+                {m.project_tag_private_round()}
               </span>
               <span className="rounded-br-sm rounded-bl-sm bg-[#FCD438] px-1.5 py-0.75 text-[#090E11]">
-                Live
+                {m.project_tag_live()}
               </span>
               <span className="rounded-br-sm rounded-bl-sm bg-[#FB8B0F] px-1.5 py-0.75 text-[#090E11]">
                 RWA
@@ -34,10 +35,10 @@ export const ProjectListPage = () => {
             ETH-ETF
           </h2>
           <p className="text-[#A0A3A7] text-xs leading-relaxed mb-3 wrap-break-word">
-            Tatol pool amount
+            {m.project_total_pool_amount()}
           </p>
           <div className="mb-2.5 flex flex-col">
-            <div className="flex items-center justify-between text-base text-white font-semibold">
+            <div className="flex items-center justify-between text-base text-white font-semibold tabular-nums">
               <span className="min-w-0 truncate">560000 3W</span>
               <span className="min-w-0 truncate">30%</span>
             </div>
@@ -46,11 +47,11 @@ export const ProjectListPage = () => {
           <div className="flex flex-col gap-2.5">
             <div className="flex items-center justify-between text-xs">
               <span className="text-[#A0A3A7]">{m.project_start_in()}</span>
-              <span className="text-white">2025.09.30 16:00</span>
+              <span className="text-white tabular-nums">2025.09.30 16:00</span>
             </div>
             <div className="flex items-center justify-between text-xs">
               <span className="text-[#A0A3A7]">{m.project_end_in()}</span>
-              <span className="text-white">2025.09.30 16:00</span>
+              <span className="text-white tabular-nums">2025.09.30 16:00</span>
             </div>
           </div>
         </div>
@@ -58,7 +59,8 @@ export const ProjectListPage = () => {
           <button
             type="button"
             aria-label={m.project_see_more_aria()}
-            className="w-full h-10 uppercase text-base font-semibold text-[#090E11] rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] cursor-pointer focus-visible:outline-none"
+            onClick={() => navigate('/projectDetail')}
+            className="w-full h-10 uppercase text-base font-semibold text-[#090E11] rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] cursor-pointer"
           >
             {m.project_see_more()}
           </button>

@@ -129,5 +129,19 @@
   "project_start_in": "Start In",
   "project_end_in": "End In",
   "project_see_more": "SEE MORE",
-  "project_see_more_aria": "View details"
+  "project_see_more_aria": "View details",
+  "project_tag_private_round": "Private Round",
+  "project_tag_live": "Live",
+  "project_total_pool_amount": "Total pool amount",
+  "project_price_per_token": "Price per token",
+  "project_private_sale_allocation": "Private Sale Allocation",
+  "project_total_raise": "Total raise",
+  "project_total_supply": "Total Supply",
+  "project_vesting_info": "Vesting information",
+  "project_sale_start": "Sale Start",
+  "project_sale_end": "Sale End",
+  "project_allowed_tiers": "Allowed tiers",
+  "project_min_investment": "Minimum investment",
+  "project_token_generation": "Token Generation",
+  "project_mint": "Mint"
 }
