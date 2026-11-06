@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "singleQuote": true,
+  "semi": false,
+  "ignorePatterns": [".agents/", "pnpm-lock.yaml", "skills-lock.json"],
+  "sortImports": {
+    "groups": [
+      ["builtin", "external"],
+      "internal",
+      ["parent", "sibling", "index"],
+      "unknown"
+    ]
+  },
+  "sortTailwindcss": {
+    "stylesheet": "./src/index.css"
+  }
+}

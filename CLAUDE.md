@@ -6,7 +6,7 @@ RWA 资产发射平台（BSC）的前端 DApp。
 
 - Vite 8 + React 19 + TypeScript，已开启 React Compiler（无需为性能手写 `useMemo` / `useCallback` / `memo`）
 - 包管理：pnpm
-- `pnpm dev` 开发 · `pnpm build` 类型检查并构建 · `pnpm lint` 运行 oxlint
+- `pnpm dev` 开发 · `pnpm build` 类型检查并构建 · `pnpm lint` 运行 oxlint · `pnpm format` 运行 oxfmt 格式化（`pnpm format:check` 只检查不修改）
 - 新增带编译脚本的依赖时，需在 `pnpm-workspace.yaml` 的 `allowBuilds` 中明确允许或拒绝，否则 `pnpm install` 会失败
 
 ## 环境变量
@@ -51,4 +51,5 @@ RPC 长期使用 publicnode 公共节点（主网与测试网均为 HTTP 优先�
 12. **字体**：西文与数字用 Inter Variable（`@fontsource-variable/inter` 的 `opsz.css`，自托管，大字号自动切换为 Display 字形），中文回退到各平台系统字体；字体栈只在 `src/index.css` 的 `@theme` 中定义为 `--font-sans`，TDesign 的 `--td-font-family` 指向它。组件中不写死字体；金额、价格等数字加 `tabular-nums`。
 13. **注释**：禁止编写教学式注释（解释代码在做什么、复述库或 API 的用法、分步讲解）；只在原因不明显时（workaround、业务约束）写一行简短注释。
 14. **导入路径**：跨目录导入统一使用 `@/` 别名（如 `@/assets/logo.svg`、`@/components/common/WalletButton.tsx`），同目录内用 `./`，不使用 `../`。
-15. 待补充…
+15. **格式化**：统一使用 oxfmt（配置在 `.oxfmtrc.json`），提交前运行 `pnpm format`，不手动调整格式。导入按三组排列、组间空一行：第三方包 → 仓库内 `@/` → 同目录 `./`；Tailwind 类名按 `src/index.css` 自动排序。副作用导入（如 CSS）不参与排序，保持原有顺序。
+16. 待补充…
