@@ -150,5 +150,9 @@
   "http_request_failed": "Request failed (HTTP {status}).",
   "wallet_insufficient_funds": "Insufficient balance to cover the amount and network fee.",
   "wallet_wrong_network": "Switch your wallet to a supported network.",
-  "chain_request_failed": "On-chain request failed. Please try again."
+  "chain_request_failed": "On-chain request failed. Please try again.",
+  "project_list_empty": "No projects yet",
+  "project_list_load_failed": "Unable to load projects",
+  "retry": "Retry",
+  "coming_soon": "Coming soon"
 }

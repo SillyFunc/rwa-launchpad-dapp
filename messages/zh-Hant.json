@@ -150,5 +150,9 @@
   "http_request_failed": "請求失敗（HTTP {status}）。",
   "wallet_insufficient_funds": "餘額不足，無法支付金額與網路手續費。",
   "wallet_wrong_network": "請將錢包切換至支援的網路。",
-  "chain_request_failed": "鏈上請求失敗，請稍後再試。"
+  "chain_request_failed": "鏈上請求失敗，請稍後再試。",
+  "project_list_empty": "暫無項目",
+  "project_list_load_failed": "項目載入失敗",
+  "retry": "重試",
+  "coming_soon": "暫未開放"
 }
