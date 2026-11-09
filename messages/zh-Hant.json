@@ -143,5 +143,12 @@
   "project_allowed_tiers": "可參與等級",
   "project_min_investment": "最低投資額",
   "project_token_generation": "代幣生成",
-  "project_mint": "鑄造"
+  "project_mint": "鑄造",
+  "request_failed": "請求失敗，請稍後再試。",
+  "request_timeout": "請求逾時，請稍後再試。",
+  "network_connection_failed": "網路連線失敗，請檢查網路後再試。",
+  "http_request_failed": "請求失敗（HTTP {status}）。",
+  "wallet_insufficient_funds": "餘額不足，無法支付金額與網路手續費。",
+  "wallet_wrong_network": "請將錢包切換至支援的網路。",
+  "chain_request_failed": "鏈上請求失敗，請稍後再試。"
 }

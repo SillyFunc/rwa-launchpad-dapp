@@ -11,17 +11,19 @@ RWA 资产发射平台（BSC）的前端 DApp。
 
 ## 环境变量
 
-复制 `.env.example` 为 `.env.local` 后再运行，变量均在 `src/config/wagmi.ts` 读取：
+复制 `.env.example` 为 `.env.local` 后再运行：
 
 - `VITE_WALLETCONNECT_PROJECT_ID`：留空时不启用 WalletConnect，钱包列表只剩浏览器注入钱包（手机扫码、跳转钱包 App 不可用）；生产环境必须配置在 https://cloud.reown.com 申请的真实 projectId
 - `VITE_ENABLE_TESTNETS`：为 `true` 时加入 BSC 测试网
+- `VITE_API_BASE_URL`：中心化接口的 baseURL，在 `src/api/client.ts` 读取
 
 RPC 长期使用 publicnode 公共节点（主网与测试网均为 HTTP 优先、WebSocket 回退），地址以常量写在 `wagmi.ts` 中，不通过环境变量配置。
 
 ## 目录
 
 - 路径别名：`@/` 指向 `src/`，定义在 `tsconfig.app.json` 的 `paths`，Vite 通过 `resolve.tsconfigPaths` 读取同一份配置
-- `src/config/`：全局单例配置（`wagmi.ts` 链与钱包、`queryClient.ts` 共用的 QueryClient）
+- `src/config/`：全局单例配置（`wagmi.ts` 链与钱包、`queryClient.ts` 共用的 QueryClient 与全局错误提示）
+- `src/api/`：中心化接口。`client.ts` 封装 axios：响应格式为 `{ code, message, data }`，`code !== 0` 或请求失败时统一抛出 `ApiError`（`message` 已是可直接展示的文案），成功时只返回 `data`；请求方法为 `get`、`postForm`（表单编码）、`postMultipart`（上传文件）
 - `src/providers/AppProviders.tsx`：Provider 嵌套顺序 Wagmi → QueryClient → ConnectKit，在 `main.tsx` 中包裹整个应用
 - `src/router.ts`：路由表（`createHashRouter`）；`App.tsx` 是根布局（Header + `<Outlet />` + Footer），页面作为它的子路由。页脚默认显示，个别页面在路由上加 `handle: { hideFooter: true }` 隐藏
 - `src/pages/`：页面组件（`HomePage` → `/`）
@@ -43,7 +45,7 @@ RPC 长期使用 publicnode 公共节点（主网与测试网均为 HTTP 优先�
 4. **图标**：统一使用 Lucide（`lucide-react`）。
 5. **动画**：统一使用 Motion（`motion`，从 `motion/react` 引入）。
 6. **状态管理**：统一使用 Zustand，只存放客户端/UI 状态；服务端数据与链上数据由 TanStack Query 缓存，不复制进 store。
-7. **网络请求**：统一使用 TanStack Query（`@tanstack/react-query`）管理请求的缓存、加载与错误状态；axios 只作为 `queryFn` / `mutationFn` 内的传输层，组件中不直接调用。
+7. **网络请求**：统一使用 TanStack Query（`@tanstack/react-query`）管理请求的缓存、加载与错误状态；axios 只作为 `queryFn` / `mutationFn` 内的传输层，组件中不直接调用，统一通过 `@/api/client.ts` 发起请求。错误提示只在 `queryClient.ts` 全局统一弹出，组件中不自己弹 Toast：mutation 失败与接口查询失败默认提示，链上读取查询与 ConnectKit 管理的钱包操作默认不提示，用户在钱包中拒绝一律不提示；单个请求用 `meta.toast` 开关、`meta.errorMessage` 覆盖文案。错误到文案的转换在 `src/utils/error.ts` 的 `resolveErrorMessage`。
 8. **表单**：统一使用 TanStack Form（`@tanstack/react-form`）管理表单状态与校验；类型校验统一使用 Zod（`zod` v4），schema 直接传给 TanStack Form 的 `validators`，不引入额外的适配器包。
 9. **钱包**：连接钱包统一使用 ConnectKit（基于 wagmi + viem），链上读写用 wagmi hooks；wagmi 与业务请求共用同一个 `QueryClient`。自定义连接按钮用 `ConnectKitButton.Custom`，它和 ConnectKit 的弹窗都必须位于 `ConnectKitProvider` 内。
 10. **路由**：`react-router`。

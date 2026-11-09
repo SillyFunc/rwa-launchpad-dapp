@@ -143,5 +143,12 @@
   "project_allowed_tiers": "Allowed tiers",
   "project_min_investment": "Minimum investment",
   "project_token_generation": "Token Generation",
-  "project_mint": "Mint"
+  "project_mint": "Mint",
+  "request_failed": "Request failed. Please try again.",
+  "request_timeout": "Request timed out. Please try again.",
+  "network_connection_failed": "Network connection failed. Check your connection and try again.",
+  "http_request_failed": "Request failed (HTTP {status}).",
+  "wallet_insufficient_funds": "Insufficient balance to cover the amount and network fee.",
+  "wallet_wrong_network": "Switch your wallet to a supported network.",
+  "chain_request_failed": "On-chain request failed. Please try again."
 }
