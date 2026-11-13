@@ -6,19 +6,13 @@ import { getRwaProjectDetail } from '@/api/projects.ts'
 import { ProjectInfoTabs } from '@/components/projects/ProjectInfoTabs.tsx'
 import { getLocale } from '@/i18n/locale.ts'
 import { m } from '@/paraglide/messages.js'
+import { formatAmount, formatDateTime } from '@/utils/format.ts'
 
-const saleDetails: { label: () => string; value: string }[] = [
-  { label: m.project_price_per_token, value: '0.0017 USDC' },
-  { label: m.project_private_sale_allocation, value: '56,000,000 $STRD' },
-  { label: m.project_total_raise, value: '95,200 USDC' },
-  { label: m.project_total_supply, value: '100,000,000 $STRD' },
-  { label: m.project_vesting_info, value: '10% TGE, 2M Cliff, 10M Vesting' },
-  { label: m.project_sale_start, value: '2025-08-20 18:00' },
-  { label: m.project_sale_end, value: '2025-08-20 18:00' },
-  { label: m.project_allowed_tiers, value: 'Gold, Platinum, Diamond' },
-  { label: m.project_min_investment, value: '100.00 USDC' },
-  { label: m.project_token_generation, value: 'TBD' },
-]
+function formatSaleAmount(value: number | null | undefined, unit?: string) {
+  if (value == null) return '--'
+  const amount = formatAmount(value)
+  return unit ? `${amount} ${unit}` : amount
+}
 
 export function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -73,6 +67,48 @@ export function ProjectDetailPage() {
     getLocale() === 'zh-Hant'
       ? asset.zhIntroduction?.trim() || asset.enIntroduction?.trim()
       : asset.enIntroduction?.trim() || asset.zhIntroduction?.trim()
+  const saleDetails = [
+    {
+      label: m.project_price_per_token,
+      value: formatSaleAmount(asset.issuePrice, 'USDC'),
+    },
+    {
+      label: m.project_private_sale_allocation,
+      value: formatSaleAmount(asset.maxBuyPerWallet, tokenSymbol),
+    },
+    {
+      label: m.project_total_raise,
+      value: formatSaleAmount(asset.totalRaise, 'USDC'),
+    },
+    {
+      label: m.project_total_supply,
+      value: formatSaleAmount(asset.totalSupply, tokenSymbol),
+    },
+    {
+      label: m.project_vesting_info,
+      value: asset.vestingInfo?.trim() || '--',
+    },
+    {
+      label: m.project_sale_start,
+      value: asset.startTime ? formatDateTime(asset.startTime) : '--',
+    },
+    {
+      label: m.project_sale_end,
+      value: asset.endTime ? formatDateTime(asset.endTime) : '--',
+    },
+    {
+      label: m.project_allowed_tiers,
+      value: asset.allowedTiers?.trim() || '--',
+    },
+    {
+      label: m.project_min_investment,
+      value: formatSaleAmount(asset.miniInvestment, 'USDC'),
+    },
+    {
+      label: m.project_token_generation,
+      value: asset.tokenGeneration?.trim() || '--',
+    },
+  ]
   const utilityContent = {
     description: m.project_utility_summary({ symbol: tokenSymbol }),
     items: [
@@ -126,10 +162,10 @@ export function ProjectDetailPage() {
           {saleDetails.map(({ label, value }) => (
             <div
               key={label()}
-              className="flex items-center justify-between py-2.5 text-xs first:pt-0 last:pb-0"
+              className="flex items-start justify-between gap-3 py-2.5 text-xs first:pt-0 last:pb-0"
             >
-              <dt className="min-w-0 truncate text-[#A0A3A7]">{label()}</dt>
-              <dd className="min-w-0 truncate text-white tabular-nums">
+              <dt className="min-w-0 flex-1 text-[#A0A3A7]">{label()}</dt>
+              <dd className="min-w-0 flex-1 text-right wrap-break-word whitespace-pre-line text-white tabular-nums">
                 {value}
               </dd>
             </div>
