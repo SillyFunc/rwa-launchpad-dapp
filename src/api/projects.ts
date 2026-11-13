@@ -71,6 +71,11 @@ export interface RwaProject {
   vestingDis: number | null
   hardcap: number | null
   softcap: number | null
+  totalRaise: number | null
+  vestingInfo: string | null
+  allowedTiers: string | null
+  miniInvestment: number | null
+  tokenGeneration: string | null
   soft: number | null
   thb: string | null
   tokenAmount: number | null
@@ -109,6 +114,16 @@ export interface RwaProject {
   minDividendBalance: number | null
   lastExecuteAt: number | null
   pair: unknown
+}
+
+export type RwaProjectDetail = RwaProject
+
+export function getRwaProjectDetail(id: number, signal?: AbortSignal) {
+  return postForm<RwaProjectDetail>(
+    'deposit/exSwap/rwa/swapCoinIssuedDetail',
+    { id },
+    signal,
+  )
 }
 
 export function listRwaProjects(params: PageParams, signal?: AbortSignal) {

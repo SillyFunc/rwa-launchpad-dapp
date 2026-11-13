@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { Button, Empty, List, Toast } from 'tdesign-mobile-react'
+import { Link } from 'react-router'
+import { Button, Empty, List, Loading } from 'tdesign-mobile-react'
 
 import { listRwaProjects, type RwaProject } from '@/api/projects.ts'
 import rwaAssetsBanner from '@/assets/home/banner-rwa-assets.webp'
@@ -51,14 +52,19 @@ export function ProjectListPage() {
   return (
     <List
       className="px-3 py-6"
-      asyncLoading={
-        projects.isFetching
-          ? 'loading'
-          : projects.hasNextPage
-            ? 'load-more'
-            : ''
+      footer={
+        projects.isFetching ? (
+          <div role="status" className="flex justify-center pt-4">
+            <Loading text={m.project_list_loading()} />
+          </div>
+        ) : projects.hasNextPage ? (
+          <div className="flex justify-center pt-4">
+            <Button variant="text" onClick={loadMore}>
+              {m.load_more()}
+            </Button>
+          </div>
+        ) : null
       }
-      onLoadMore={loadMore}
       onScroll={(bottomDistance) => {
         if (bottomDistance < 100) loadMore()
       }}
@@ -80,7 +86,10 @@ function ProjectCard({
   eager: boolean
 }) {
   return (
-    <article className="rounded-3xl border border-[#FCD438] bg-[#1D1D1D] p-3">
+    <Link
+      to={`/projectDetail/${project.id}`}
+      className="block rounded-3xl border border-[#FCD438] bg-[#1D1D1D] p-3"
+    >
       <div className="mb-3">
         <div className="relative h-71.25 w-full overflow-hidden rounded-2xl">
           <img
@@ -133,15 +142,10 @@ function ProjectCard({
         </div>
       </div>
       <div className="rounded-full bg-linear-to-r from-[#FCCC1F]/10 to-[#EFBA09]/10 p-1">
-        <button
-          type="button"
-          aria-label={m.project_see_more_aria()}
-          onClick={() => Toast(m.coming_soon())}
-          className="h-10 w-full cursor-pointer rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-base font-semibold text-[#090E11] uppercase"
-        >
+        <span className="flex h-10 w-full items-center justify-center rounded-full bg-linear-to-r from-[#FEFE00] to-[#CF4F00] text-base font-semibold text-[#090E11] uppercase">
           {m.project_see_more()}
-        </button>
+        </span>
       </div>
-    </article>
+    </Link>
   )
 }

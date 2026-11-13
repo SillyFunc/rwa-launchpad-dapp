@@ -31,7 +31,7 @@ export const router = createHashRouter([
         ],
       },
       { path: 'projectList', Component: ProjectListPage },
-      { path: 'projectDetail', Component: ProjectDetailPage },
+      { path: 'projectDetail/:id', Component: ProjectDetailPage },
       {
         path: 'onboarding',
         Component: OnboardingLayout,
