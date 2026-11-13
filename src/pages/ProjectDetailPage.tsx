@@ -1,9 +1,15 @@
 import { skipToken, useQuery } from '@tanstack/react-query'
+import { useReducedMotion } from 'motion/react'
+import { useId, useRef, useState } from 'react'
 import { Navigate, useParams } from 'react-router'
 import { Avatar, Button, Empty, Loading, Toast } from 'tdesign-mobile-react'
 
 import { getRwaProjectDetail } from '@/api/projects.ts'
-import { ProjectInfoTabs } from '@/components/projects/ProjectInfoTabs.tsx'
+import { ProjectDescriptionPreview } from '@/components/projects/ProjectDescriptionPreview.tsx'
+import {
+  ProjectInfoTabs,
+  type ProjectInfoTab,
+} from '@/components/projects/ProjectInfoTabs.tsx'
 import { getLocale } from '@/i18n/locale.ts'
 import { m } from '@/paraglide/messages.js'
 import { formatAmount, formatDateTime } from '@/utils/format.ts'
@@ -15,6 +21,11 @@ function formatSaleAmount(value: number | null | undefined, unit?: string) {
 }
 
 export function ProjectDetailPage() {
+  const [activeInfoTab, setActiveInfoTab] =
+    useState<ProjectInfoTab>('description')
+  const infoTabsRef = useRef<HTMLElement>(null)
+  const infoSectionId = useId()
+  const shouldReduceMotion = useReducedMotion()
   const { id } = useParams<{ id: string }>()
   const projectId = Number(id)
   const isValidId = Number.isSafeInteger(projectId) && projectId > 0
@@ -128,6 +139,19 @@ export function ProjectDetailPage() {
     ],
   }
 
+  function showFullDescription() {
+    setActiveInfoTab('description')
+    requestAnimationFrame(() => {
+      infoTabsRef.current?.scrollIntoView({
+        behavior: shouldReduceMotion ? 'instant' : 'smooth',
+        block: 'start',
+      })
+      infoTabsRef.current
+        ?.querySelector<HTMLButtonElement>('[role="tab"][aria-selected="true"]')
+        ?.focus({ preventScroll: true })
+    })
+  }
+
   return (
     <div className="px-3 py-5">
       <div className="rounded-3xl border border-[#FCD438] bg-linear-[40deg] from-[#4A5F73]/40 to-[#24313F]/40 p-3">
@@ -153,9 +177,11 @@ export function ProjectDetailPage() {
               </div>
             </div>
           </div>
-          <p className="min-w-0 text-xs wrap-break-word whitespace-pre-line text-[#A0A3A7]">
-            {description || m.project_description_empty()}
-          </p>
+          <ProjectDescriptionPreview
+            description={description}
+            controls={infoSectionId}
+            onReadMore={showFullDescription}
+          />
           <div className="flex gap-2.5"></div>
         </div>
         <dl className="mb-4 divide-y divide-[#D8D8D8]/40 rounded-3xl bg-[#212018] p-3">
@@ -182,6 +208,10 @@ export function ProjectDetailPage() {
         </button>
       </div>
       <ProjectInfoTabs
+        id={infoSectionId}
+        ref={infoTabsRef}
+        value={activeInfoTab}
+        onChange={setActiveInfoTab}
         description={description}
         utility={utilityContent}
         business={businessContent}

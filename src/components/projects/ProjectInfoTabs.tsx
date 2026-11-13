@@ -4,7 +4,7 @@ import {
   motion,
   useReducedMotion,
 } from 'motion/react'
-import { useId, useState, type KeyboardEvent } from 'react'
+import { useId, type KeyboardEvent, type Ref } from 'react'
 
 import { m } from '@/paraglide/messages.js'
 
@@ -21,18 +21,25 @@ const tabs = [
   { id: 'business', label: m.project_tab_business },
 ] as const
 
-type ProjectInfoTab = (typeof tabs)[number]['id']
+export type ProjectInfoTab = (typeof tabs)[number]['id']
 
 export function ProjectInfoTabs({
+  id: sectionId,
+  ref,
+  value: activeTab,
+  onChange,
   description,
   utility,
   business,
 }: {
+  id?: string
+  ref?: Ref<HTMLElement>
+  value: ProjectInfoTab
+  onChange: (value: ProjectInfoTab) => void
   description?: string
   utility?: ProjectOverviewContent
   business?: ProjectOverviewContent
 }) {
-  const [activeTab, setActiveTab] = useState<ProjectInfoTab>('description')
   const id = useId()
   const shouldReduceMotion = useReducedMotion()
   const pillTransition = shouldReduceMotion
@@ -55,12 +62,12 @@ export function ProjectInfoTabs({
 
     event.preventDefault()
     const nextTab = tabs[nextIndex].id
-    setActiveTab(nextTab)
+    onChange(nextTab)
     document.getElementById(`${id}-tab-${nextTab}`)?.focus()
   }
 
   return (
-    <section className="mx-1 mt-6">
+    <section id={sectionId} ref={ref} className="mx-1 mt-6 scroll-mt-20">
       <LayoutGroup id={id}>
         <motion.div
           layoutScroll
@@ -80,7 +87,7 @@ export function ProjectInfoTabs({
                 aria-selected={selected}
                 aria-controls={`${id}-panel`}
                 tabIndex={selected ? 0 : -1}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => onChange(tab.id)}
                 onKeyDown={(event) => onTabKeyDown(event, index)}
                 initial={false}
                 animate={{

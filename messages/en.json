@@ -192,6 +192,7 @@
   "project_detail_load_failed": "Unable to load asset details",
   "project_detail_empty": "Asset not found",
   "project_description_empty": "No description available",
+  "project_read_full_description": "Read full description",
   "retry": "Retry",
   "coming_soon": "Coming soon"
 }

@@ -192,6 +192,7 @@
   "project_detail_load_failed": "資產詳情載入失敗",
   "project_detail_empty": "找不到此資產",
   "project_description_empty": "暫無描述",
+  "project_read_full_description": "查看完整描述",
   "retry": "重試",
   "coming_soon": "暫未開放"
 }
