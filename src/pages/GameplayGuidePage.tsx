@@ -1,36 +1,21 @@
 import { useQuery } from '@tanstack/react-query'
-import DOMPurify from 'dompurify'
 import { Button, Empty, Loading } from 'tdesign-mobile-react'
 
 import { ApiError } from '@/api/client.ts'
-import { getGameplayGuide, type GameplayGuide } from '@/api/gameplayGuide.ts'
+import { getGameplayGuide } from '@/api/gameplayGuide.ts'
 import { PageTitle } from '@/components/common/PageTitle.tsx'
-import { getLocale } from '@/i18n/locale.ts'
 import { m } from '@/paraglide/messages.js'
 import { formatDateTime } from '@/utils/format.ts'
-
-function getLocalizedContent(guide: GameplayGuide) {
-  const zh = guide.contentZhHant?.trim()
-  const en = guide.contentEn?.trim()
-  return getLocale() === 'zh-Hant' ? zh || en : en || zh
-}
-
-function sanitize(html: string) {
-  return DOMPurify.sanitize(html, {
-    USE_PROFILES: { html: true },
-    FORBID_TAGS: ['style', 'form', 'input', 'button', 'textarea', 'select'],
-    FORBID_ATTR: ['style'],
-  })
-}
+import { pickLocalized, sanitizeRichText } from '@/utils/richText.ts'
 
 export function GameplayGuidePage() {
   const guide = useQuery({
     queryKey: ['gameplayGuide'],
     queryFn: ({ signal }) => getGameplayGuide(signal),
     select: (data) => {
-      const content = data && getLocalizedContent(data)
+      const content = data && pickLocalized(data.contentZhHant, data.contentEn)
       return content
-        ? { html: sanitize(content), updateTime: data.updateTime }
+        ? { html: sanitizeRichText(content), updateTime: data.updateTime }
         : null
     },
   })

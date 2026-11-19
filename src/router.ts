@@ -1,5 +1,7 @@
 import { createHashRouter } from 'react-router'
 
+import { AnnouncementDetailPage } from '@/pages/AnnouncementDetailPage.tsx'
+import { AnnouncementListPage } from '@/pages/AnnouncementListPage.tsx'
 import { ConsolePage } from '@/pages/ConsolePage.tsx'
 import { GameplayGuidePage } from '@/pages/GameplayGuidePage.tsx'
 import { HomePage } from '@/pages/HomePage.tsx'
@@ -36,6 +38,8 @@ export const router = createHashRouter([
       { path: 'projectDetail/:id', Component: ProjectDetailPage },
       { path: 'gameplayGuide', Component: GameplayGuidePage },
       { path: 'console', Component: ConsolePage },
+      { path: 'announcementList', Component: AnnouncementListPage },
+      { path: 'announcementDetail/:id', Component: AnnouncementDetailPage },
       {
         path: 'onboarding',
         Component: OnboardingLayout,

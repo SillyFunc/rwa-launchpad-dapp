@@ -63,6 +63,7 @@ export const sidebarNavigationGroups: SidebarNavigationItem[][] = [
       id: 'announcement',
       label: m.sidebar_nav_announcement,
       icon: announcementIcon,
+      to: '/announcementList',
     },
   ],
 ]
