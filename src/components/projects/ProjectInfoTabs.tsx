@@ -6,6 +6,7 @@ import {
 } from 'motion/react'
 import { useId, type KeyboardEvent, type Ref } from 'react'
 
+import type { RwaTokenomicsInfo } from '@/api/projects.ts'
 import { m } from '@/paraglide/messages.js'
 
 import {
@@ -29,6 +30,7 @@ export function ProjectInfoTabs({
   value: activeTab,
   onChange,
   description,
+  tokenomics,
   utility,
   business,
 }: {
@@ -37,6 +39,7 @@ export function ProjectInfoTabs({
   value: ProjectInfoTab
   onChange: (value: ProjectInfoTab) => void
   description?: string
+  tokenomics?: RwaTokenomicsInfo | null
   utility?: ProjectOverviewContent
   business?: ProjectOverviewContent
 }) {
@@ -144,7 +147,7 @@ export function ProjectInfoTabs({
                 content={business}
               />
             ) : activeTab === 'tokenomics' ? (
-              <ProjectTokenomicsPanel />
+              <ProjectTokenomicsPanel tokenomics={tokenomics} />
             ) : (
               <div className="rounded-3xl border border-[#F0E510]/40 bg-linear-to-br from-[#4A5F73]/24 to-[#24313F]/24 p-4">
                 <div className="min-h-4">

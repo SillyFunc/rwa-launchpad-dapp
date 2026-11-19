@@ -116,7 +116,28 @@ export interface RwaProject {
   pair: unknown
 }
 
-export type RwaProjectDetail = RwaProject
+/** 代币分配百分数，例如 `15.5` 表示 15.5%；未配置时为 `0` */
+export interface RwaTokenomicsInfo {
+  seed: number
+  privateSale: number
+  publicSale: number
+  liquidity: number
+  treasury: number
+  coreTeam: number
+  advisory: number
+  ecosystemRewards: number
+  kol: number
+  unlocked: number
+}
+export interface RwaOverviewInfo {
+  description: string
+  childs: string[]
+}
+export interface RwaProjectDetail extends RwaProject {
+  tokenomicsInfo: RwaTokenomicsInfo
+  utilityInfo: RwaOverviewInfo
+  businessInfo: RwaOverviewInfo
+}
 
 export function getRwaProjectDetail(id: number, signal?: AbortSignal) {
   return postForm<RwaProjectDetail>(

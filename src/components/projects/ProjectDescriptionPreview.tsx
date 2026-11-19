@@ -1,16 +1,13 @@
-import { ChevronDown } from 'lucide-react'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 
 import { m } from '@/paraglide/messages.js'
 
 export function ProjectDescriptionPreview({
   description,
-  controls,
-  onReadMore,
+  children,
 }: {
   description?: string
-  controls: string
-  onReadMore: () => void
+  children: ReactNode
 }) {
   const textRef = useRef<HTMLParagraphElement>(null)
   const [isTruncated, setIsTruncated] = useState(false)
@@ -34,17 +31,7 @@ export function ProjectDescriptionPreview({
       >
         {description || m.project_description_empty()}
       </p>
-      {description && isTruncated ? (
-        <button
-          type="button"
-          aria-label={m.project_read_full_description()}
-          aria-controls={controls}
-          onClick={onReadMore}
-          className="flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-full text-[#FCD438] hover:bg-[#FCD438]/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FCD438]"
-        >
-          <ChevronDown aria-hidden className="size-4" />
-        </button>
-      ) : null}
+      {description && isTruncated ? children : null}
     </div>
   )
 }

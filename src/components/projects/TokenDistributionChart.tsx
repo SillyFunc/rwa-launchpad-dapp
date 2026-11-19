@@ -68,7 +68,7 @@ export default function TokenDistributionChart({
         trigger: 'item',
         renderMode: 'richText',
         confine: true,
-        formatter: '{b}: {d}%',
+        formatter: '{b}: {c}%',
         backgroundColor: '#1D1D1D',
         borderColor: '#FCD438',
         textStyle: {

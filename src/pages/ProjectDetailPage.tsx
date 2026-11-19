@@ -1,18 +1,24 @@
 import { skipToken, useQuery } from '@tanstack/react-query'
+import { ChevronDown } from 'lucide-react'
 import { useReducedMotion } from 'motion/react'
-import { useId, useRef, useState } from 'react'
-import { Navigate, useParams } from 'react-router'
+import { useEffect, useRef, useState } from 'react'
+import { Navigate, useLocation, useParams } from 'react-router'
 import { Avatar, Button, Empty, Loading, Toast } from 'tdesign-mobile-react'
 
-import { getRwaProjectDetail } from '@/api/projects.ts'
+import { getRwaProjectDetail, type RwaOverviewInfo } from '@/api/projects.ts'
 import { ProjectDescriptionPreview } from '@/components/projects/ProjectDescriptionPreview.tsx'
 import {
   ProjectInfoTabs,
   type ProjectInfoTab,
 } from '@/components/projects/ProjectInfoTabs.tsx'
-import { getLocale } from '@/i18n/locale.ts'
+import type { ProjectOverviewContent } from '@/components/projects/ProjectOverviewPanel.tsx'
 import { m } from '@/paraglide/messages.js'
 import { formatAmount, formatDateTime } from '@/utils/format.ts'
+import {
+  formatTokenSymbol,
+  getProjectDescription,
+  PROJECT_DESCRIPTION_SECTION_ID,
+} from '@/utils/projects.ts'
 
 function formatSaleAmount(value: number | null | undefined, unit?: string) {
   if (value == null) return '--'
@@ -20,11 +26,33 @@ function formatSaleAmount(value: number | null | undefined, unit?: string) {
   return unit ? `${amount} ${unit}` : amount
 }
 
+function toOverviewContent(
+  info: RwaOverviewInfo | null | undefined,
+): ProjectOverviewContent {
+  return {
+    description: info?.description ?? '',
+    items: info?.childs?.filter((item) => item.trim()) ?? [],
+  }
+}
+
+function scrollToDescription(
+  section: HTMLElement | null,
+  reduceMotion: boolean | null,
+) {
+  section?.scrollIntoView({
+    behavior: reduceMotion ? 'instant' : 'smooth',
+    block: 'start',
+  })
+  section
+    ?.querySelector<HTMLButtonElement>('[role="tab"]')
+    ?.focus({ preventScroll: true })
+}
+
 export function ProjectDetailPage() {
   const [activeInfoTab, setActiveInfoTab] =
     useState<ProjectInfoTab>('description')
   const infoTabsRef = useRef<HTMLElement>(null)
-  const infoSectionId = useId()
+  const location = useLocation()
   const shouldReduceMotion = useReducedMotion()
   const { id } = useParams<{ id: string }>()
   const projectId = Number(id)
@@ -36,6 +64,27 @@ export function ProjectDetailPage() {
       ? ({ signal }) => getRwaProjectDetail(projectId, signal)
       : skipToken,
   })
+  const loadedProjectId = project.data?.id
+
+  useEffect(() => {
+    if (
+      location.hash !== `#${PROJECT_DESCRIPTION_SECTION_ID}` ||
+      loadedProjectId !== projectId
+    )
+      return
+
+    const frame = requestAnimationFrame(() => {
+      setActiveInfoTab('description')
+      scrollToDescription(infoTabsRef.current, shouldReduceMotion)
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [
+    location.hash,
+    location.key,
+    loadedProjectId,
+    projectId,
+    shouldReduceMotion,
+  ])
 
   if (!isValidId) return <Navigate to="/projectList" replace />
 
@@ -70,14 +119,9 @@ export function ProjectDetailPage() {
   }
 
   const asset = project.data
-  const tokenSymbol = asset.symbol.startsWith('$')
-    ? asset.symbol
-    : `$${asset.symbol}`
+  const tokenSymbol = formatTokenSymbol(asset.symbol)
   const avatarFallback = asset.name.slice(0, 1) || '?'
-  const description =
-    getLocale() === 'zh-Hant'
-      ? asset.zhIntroduction?.trim() || asset.enIntroduction?.trim()
-      : asset.enIntroduction?.trim() || asset.zhIntroduction?.trim()
+  const description = getProjectDescription(asset)
   const saleDetails = [
     {
       label: m.project_price_per_token,
@@ -120,35 +164,13 @@ export function ProjectDetailPage() {
       value: asset.tokenGeneration?.trim() || '--',
     },
   ]
-  const utilityContent = {
-    description: m.project_utility_summary({ symbol: tokenSymbol }),
-    items: [
-      m.project_utility_item_staking(),
-      m.project_utility_item_governance(),
-      m.project_utility_item_access(),
-      m.project_utility_item_transactions(),
-    ],
-  }
-  const businessContent = {
-    description: m.project_business_summary(),
-    items: [
-      m.project_business_item_tokenization(),
-      m.project_business_item_ecosystem(),
-      m.project_business_item_community(),
-      m.project_business_item_collaboration(),
-    ],
-  }
+  const utilityContent = toOverviewContent(asset.utilityInfo)
+  const businessContent = toOverviewContent(asset.businessInfo)
 
   function showFullDescription() {
     setActiveInfoTab('description')
     requestAnimationFrame(() => {
-      infoTabsRef.current?.scrollIntoView({
-        behavior: shouldReduceMotion ? 'instant' : 'smooth',
-        block: 'start',
-      })
-      infoTabsRef.current
-        ?.querySelector<HTMLButtonElement>('[role="tab"][aria-selected="true"]')
-        ?.focus({ preventScroll: true })
+      scrollToDescription(infoTabsRef.current, shouldReduceMotion)
     })
   }
 
@@ -177,11 +199,17 @@ export function ProjectDetailPage() {
               </div>
             </div>
           </div>
-          <ProjectDescriptionPreview
-            description={description}
-            controls={infoSectionId}
-            onReadMore={showFullDescription}
-          />
+          <ProjectDescriptionPreview description={description}>
+            <button
+              type="button"
+              aria-label={m.project_read_full_description()}
+              aria-controls={PROJECT_DESCRIPTION_SECTION_ID}
+              onClick={showFullDescription}
+              className="flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-full text-[#FCD438] hover:bg-[#FCD438]/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FCD438]"
+            >
+              <ChevronDown aria-hidden className="size-4" />
+            </button>
+          </ProjectDescriptionPreview>
           <div className="flex gap-2.5"></div>
         </div>
         <dl className="mb-4 divide-y divide-[#D8D8D8]/40 rounded-3xl bg-[#212018] p-3">
@@ -208,11 +236,12 @@ export function ProjectDetailPage() {
         </button>
       </div>
       <ProjectInfoTabs
-        id={infoSectionId}
+        id={PROJECT_DESCRIPTION_SECTION_ID}
         ref={infoTabsRef}
         value={activeInfoTab}
         onChange={setActiveInfoTab}
         description={description}
+        tokenomics={asset.tokenomicsInfo}
         utility={utilityContent}
         business={businessContent}
       />
