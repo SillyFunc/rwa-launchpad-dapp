@@ -185,6 +185,11 @@
   "project_detail_empty": "找不到此資產",
   "project_description_empty": "暫無描述",
   "project_read_full_description": "查看完整描述",
+  "gameplay_guide_title": "玩法說明",
+  "gameplay_guide_loading": "正在載入玩法說明…",
+  "gameplay_guide_load_failed": "玩法說明載入失敗",
+  "gameplay_guide_empty": "暫未配置玩法說明",
+  "gameplay_guide_updated_at": "更新於 {time}",
   "retry": "重試",
   "coming_soon": "暫未開放"
 }

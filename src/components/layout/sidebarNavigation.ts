@@ -48,7 +48,12 @@ export const sidebarNavigationGroups: SidebarNavigationItem[][] = [
     { id: 'console', label: m.sidebar_nav_console, icon: consoleIcon },
   ],
   [
-    { id: 'gameplay', label: m.sidebar_nav_gameplay, icon: gameplayIcon },
+    {
+      id: 'gameplay',
+      label: m.sidebar_nav_gameplay,
+      icon: gameplayIcon,
+      to: '/gameplayGuide',
+    },
     {
       id: 'announcement',
       label: m.sidebar_nav_announcement,
