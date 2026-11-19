@@ -185,6 +185,8 @@
   "project_detail_empty": "找不到此資產",
   "project_description_empty": "暫無描述",
   "project_read_full_description": "查看完整描述",
+  "console_title": "控制台",
+  "console_empty": "暫無資產",
   "gameplay_guide_title": "玩法說明",
   "gameplay_guide_loading": "正在載入玩法說明…",
   "gameplay_guide_load_failed": "玩法說明載入失敗",

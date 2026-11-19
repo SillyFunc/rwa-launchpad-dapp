@@ -185,6 +185,8 @@
   "project_detail_empty": "Asset not found",
   "project_description_empty": "No description available",
   "project_read_full_description": "Read full description",
+  "console_title": "Console",
+  "console_empty": "No assets yet",
   "gameplay_guide_title": "Gameplay details",
   "gameplay_guide_loading": "Loading gameplay details…",
   "gameplay_guide_load_failed": "Unable to load gameplay details",

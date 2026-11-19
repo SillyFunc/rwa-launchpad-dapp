@@ -45,7 +45,12 @@ export const sidebarNavigationGroups: SidebarNavigationItem[][] = [
       icon: launchIcon,
       to: '/launch',
     },
-    { id: 'console', label: m.sidebar_nav_console, icon: consoleIcon },
+    {
+      id: 'console',
+      label: m.sidebar_nav_console,
+      icon: consoleIcon,
+      to: '/console',
+    },
   ],
   [
     {
