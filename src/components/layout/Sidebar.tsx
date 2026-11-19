@@ -95,9 +95,11 @@ export function Sidebar() {
       overlayProps={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
       onClose={close}
       onOpened={() => closeButtonRef.current?.focus({ preventScroll: true })}
-      className="pointer-events-none w-full [--td-popup-bg-color:transparent]"
+      // TDesign 右侧弹层固定 height: 100vh，移动端会被浏览器工具栏遮住底部，改用可视高度 dvh；
+      // TDesign 样式未分层，须加 ! 才能覆盖
+      className="pointer-events-none h-dvh! max-h-dvh! w-full [--td-popup-bg-color:transparent]"
     >
-      <div className="mx-auto flex h-full w-full flex-col px-4 pt-24 sm:max-w-sm">
+      <div className="mx-auto flex h-full w-full flex-col px-4 pt-[clamp(4.5rem,12dvh,6rem)] pb-[max(1rem,env(safe-area-inset-bottom))] sm:max-w-sm">
         <section
           id="site-navigation"
           role="dialog"
